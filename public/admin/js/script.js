@@ -107,17 +107,7 @@ $(document).ready(function () {
     }
 
 
-    var table = $('#categoryDataTable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "category",
-        columns: [
-            { data: 'name', name: 'name' },
-            { data: 'cars_count', name: 'cars_count' },
-            { data: 'date_added', name: 'date_added' },
-            { data: 'action', name: 'action', orderable: false, searchable: false },
-        ]
-    });
+
 
 });
 

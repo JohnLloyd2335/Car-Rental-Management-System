@@ -10,9 +10,9 @@ class Brand extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['brand'];
+    protected $fillable = ['name'];
 
-    public function car(): HasMany
+    public function cars(): HasMany
     {
         return $this->hasMany(Car::class);
     }

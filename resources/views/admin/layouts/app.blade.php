@@ -34,8 +34,8 @@
                 <a class="link {{ Route::is('category.index') ? 'active-link' : '' }}"
                     href="{{ route('category.index') }}"><i class="fas fa-list"></i><span
                         class="text-link">Category</span></a>
-                <a class="link" href="#"><i class="fas fa-copyright"></i><span
-                        class="text-link">Brand</span></a>
+                <a class="link {{ Route::is('brand.index') ? 'active-link' : '' }}" href="{{ route('brand.index') }}"><i
+                        class="fas fa-copyright"></i><span class="text-link">Brand</span></a>
                 <a class="link" href="#"><i class="fas fa-gear"></i><span
                         class="text-link">Accessories</span></a>
                 <a class="link" href="#"><i class="fas fa-car"></i><span class="text-link">Cars</span></a>
@@ -78,9 +78,8 @@
 
     <script src="{{ asset('admin/js/jquery-validate.js') }}"></script>
     <script src="{{ asset('admin/js/dataTables.min.js') }}"></script>
-    <script src="{{ asset('dataTables-bootstrap5.min.js') }}"></script>
-
-    <link rel="stylesheet" href="{{ asset('admin/css/datatable-custom.css') }}">
+    <script src="{{ asset('admin/js/dataTables-bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('admin/js/dataTable-config.js') }}"></script>
 </body>
 
 </html>

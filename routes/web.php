@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
@@ -46,6 +47,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('category/save', [CategoryController::class, 'store'])->name('category.store');
         Route::get('category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
         Route::put('category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
+
+        //Brand Route
+        Route::get('brand', [BrandController::class, 'index'])->name('brand.index');
+        Route::get('brand/add', [BrandController::class, 'create'])->name('brand.create');
+        Route::post('brand/save', [BrandController::class, 'store'])->name('brand.store');
+        Route::get('brand/{id}/edit', [BrandController::class, 'edit'])->name('brand.edit');
+        Route::put('brand/{id}/update', [BrandController::class, 'update'])->name('brand.update');
 
     });
 });

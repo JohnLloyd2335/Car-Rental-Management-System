@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Category;
+namespace App\Http\Requests\Admin\Brand;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCategoryRequest extends FormRequest
+class UpdateBrandRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,14 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:255', 'unique:categories,name,' . $this->id]
+            'name' => ['required', 'max:255', 'unique:brands,name,' . $this->id]
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.unique' => 'The category name is already existed'
+            'name.unique' => 'The brand name is already existed'
         ];
     }
 }
