@@ -1,0 +1,121 @@
+.dataTable {
+    border: 1px solid #c7c7c7;
+    width: 100%;
+}
+
+.dataTable thead {
+    background-color: #1B1D27;
+    height: 60px;
+}
+
+div.dataTables_wrapper div.dataTables_length label {
+    font-size: 20px;
+    font-weight: 500;
+    color: #6d6a6a;
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+    font-size: 18px;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    height: 40px;
+    font-size: 18px;
+}
+
+div.dataTables_wrapper div.dataTables_filter label {
+    font-size: 20px;
+    font-weight: 500;
+    color: #6d6a6a;
+}
+
+.dataTable thead tr {
+    padding: 10px 0;
+    color: #ffff;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 18px;
+    text-align: center;
+}
+
+
+.dataTable tbody tr {
+    text-align: center;
+    color: #000;
+    font-weight: 900;
+}
+
+
+.dataTable tbody tr td {
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #6d6a6a;
+    padding: 10px 0;
+    color: #494949;
+}
+
+table.dataTable td.dataTables_empty {
+    padding: 20px 0;
+    text-transform: uppercase;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    font-size: 20px;
+    font-weight: 500;
+    color: #6d6a6a;
+}
+
+.page-item.active .page-link {
+    background-color: #1B1D27;
+    border-color: #1B1D27;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    font-size: 18px;
+}
+
+
+.dataTable tbody tr td button {
+    border: none;
+    color: #ffff;
+    padding: 2px 5px;
+    height: 50px;
+    width: 60px;
+    border-radius: 8px;
+    transition: 0.3s ease-out;
+}
+
+
+.dataTable tbody tr td button:hover {
+    opacity: 95%;
+}
+
+
+.dataTable tbody tr td button i {
+    font-size: 20px;
+}
+
+.dataTable tbody tr td a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: #ffff;
+    padding: 2px 5px;
+    height: 50px;
+    width: 60px;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+
+.dataTable tbody tr td a:hover {
+    opacity: 95%;
+}
+
+
+.dataTable tbody tr td a i {
+    font-size: 20px;
+}
