@@ -134,6 +134,8 @@ $(document).ready(function () {
   })
 
 
+
+
 });
 
 //set rent end date max val
@@ -156,7 +158,7 @@ function setRentEndDateMaxVal() {
 }
 
 //compute total amount
-function computeTotalAmount(pricePerDay = 500) {
+function computeTotalAmount(pricePerDay) {
   let startDateToDate = new Date($("#start_date").val());
   let endDateToDate = new Date($("#end_date").val());
   let daysHTML = $("#days");

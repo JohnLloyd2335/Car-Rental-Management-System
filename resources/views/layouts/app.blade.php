@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @livewireStyles
 </head>
 
 <body>
     <nav>
         <a class="nav-brand" href="#">
-            <img src="images/logo/nav-logo.png" alt="Nav Logo" class="nav-logo" />
+            <img src="{{ asset('images/logo/nav-logo.png') }}" alt="Nav Logo" class="nav-logo" />
             <span class="nav-brand-text">CRMS</span>
             <span id="toggle-icon"><i class="fas fa-bars toggle-icon"></i></span>
         </a>
@@ -24,7 +25,7 @@
                 <a href="{{ route('index') }}">Home</a>
             </li>
             <li class="nav-link">
-                <a href="#">Cars</a>
+                <a href="{{ route('cars') }}">Cars</a>
             </li>
             <li class="nav-link">
                 <a href="about.html">About</a>
@@ -42,7 +43,7 @@
                 </li>
                 <div class="profile-dropdown-menu">
                     <div class="profile-info">
-                        <img src="images/default_profile_icon.jpg" alt="Default Profile Icon" />
+                        <img src="{{ asset('images/default_profile_icon.jpg') }}" alt="Default Profile Icon" />
                         <h5>{{ auth()->user()->name }}</h5>
                     </div>
                     <hr />
@@ -112,6 +113,7 @@
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.js') }}"></script>
     <script src="{{ asset('js/ajax.js') }}"></script>
+    @livewireScripts
 </body>
 
 </html>

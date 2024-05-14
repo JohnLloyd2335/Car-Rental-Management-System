@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>CRMS</title>
+    <link rel="stylesheet" href="{{ asset('admin/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/css/table.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
+    @livewireStyles
 </head>
 
 <body>
@@ -34,11 +36,14 @@
                 <a class="link {{ Route::is('category.index') ? 'active-link' : '' }}"
                     href="{{ route('category.index') }}"><i class="fas fa-list"></i><span
                         class="text-link">Category</span></a>
-                <a class="link {{ Route::is('brand.index') ? 'active-link' : '' }}" href="{{ route('brand.index') }}"><i
-                        class="fas fa-copyright"></i><span class="text-link">Brand</span></a>
-                <a class="link" href="#"><i class="fas fa-gear"></i><span
+                <a class="link {{ Route::is('brand.index') ? 'active-link' : '' }}"
+                    href="{{ route('brand.index') }}"><i class="fas fa-copyright"></i><span
+                        class="text-link">Brand</span></a>
+                <a class="link {{ Route::is('accessory.index') ? 'active-link' : '' }}"
+                    href="{{ route('accessory.index') }}"><i class="fas fa-gear"></i><span
                         class="text-link">Accessories</span></a>
-                <a class="link" href="#"><i class="fas fa-car"></i><span class="text-link">Cars</span></a>
+                <a class="link {{ Route::is('car.index') ? 'active-link' : '' }}" href="{{ route('car.index') }}"><i
+                        class="fas fa-car"></i><span class="text-link">Cars</span></a>
                 <a class="link" href="#"><i class="fas fa-calendar"></i><span
                         class="text-link">Rentals</span></a>
                 <a class="link" href="#"><i class="fas fa-chart-simple"></i><span
@@ -70,16 +75,12 @@
             @yield('content')
         </main>
     </div>
-
     <script src="{{ asset('admin/js/sweetalert2.js') }}"></script>
     <script src="{{ asset('admin/js/jquery.js') }}"></script>
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
     <script src="{{ asset('admin/js/script.js') }}"></script>
     <script src="{{ asset('admin/js/ajax.js') }}"></script>
-
-    <script src="{{ asset('admin/js/jquery-validate.js') }}"></script>
-    <script src="{{ asset('admin/js/dataTables.min.js') }}"></script>
-    <script src="{{ asset('admin/js/dataTables-bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('admin/js/dataTable-config.js') }}"></script>
+    @livewireScripts
 </body>
 
 </html>

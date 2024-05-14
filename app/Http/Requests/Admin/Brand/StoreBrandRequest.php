@@ -22,7 +22,7 @@ class StoreBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:255', 'unique:brands,name,' . $this->id]
+            'name' => ['required', 'max:255', 'unique:brands']
         ];
     }
 }

@@ -15,12 +15,9 @@ class CustomerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->user() && !auth()->user()->is_admin) {
-
-            return $next($request);
+        if (!auth()->user() && auth()->user()->is_admin) {
+            return redirect()->back();
         }
-
-
-        return redirect()->back();
+        return $next($request);
     }
 }

@@ -13,20 +13,7 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::withCount('cars')->orderByDesc("id")->get();
-        if ($request->ajax()) {
-            return DataTables::of($categories)
-                ->addIndexColumn()
-                ->addColumn("date_added", function ($category) {
-                    return date('M d, Y h:i A', strtotime($category->created_at));
-                })
-                ->addColumn('action', function ($category) {
-                    $route = route('category.edit', $category->id);
-                    return "<a class='bg-primary' href='" . $route . "'><i class='fas fa-edit'></i></a>";
-                })
-                ->rawColumns(['date_added', 'action'])
-                ->make(true);
-        }
+
 
         return view('admin.category.index');
     }

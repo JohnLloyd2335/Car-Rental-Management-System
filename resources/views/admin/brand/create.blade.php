@@ -13,7 +13,8 @@
                     @csrf
                     <div class="brand-form-group">
                         <label>Name</label>
-                        <input type="text" name="name" class="@error('name') input-error @enderror">
+                        <input type="text" name="name" class="@error('name') input-error @enderror"
+                            value="{{ old('name') }}">
                         @error('name')
                             <div class="validation-error-container">
                                 <p>{{ $message }}</p>

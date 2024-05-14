@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->string('model');
             $table->integer('year');
-            $table->double('price_per_day', 5, 2);
+            $table->double('price_per_day', 8, 2);
             $table->boolean('is_available')->default(true);
             $table->string('plate_number');
             $table->text('description');

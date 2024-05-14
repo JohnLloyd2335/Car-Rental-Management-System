@@ -106,31 +106,39 @@ $(document).ready(function () {
         rentalReportSelectField.append(`<option value='${i}'>${i}</option>`);
     }
 
+    $("#year").on('input', function () {
+        let value = $(this).val();
 
+        if (value.length > 4) {
+            value = value.slice(0, 4);
+            $(this).val(value);
+        }
+    })
+
+    $("#accessories").select2();
 
 
 });
 
+// document.addEventListener('livewire:init', function () {
+//     $("#toggleCarAvailabilityButton").click(() => {
+//         Swal.fire({
+//             title: "Warning!",
+//             text: "Are you sure you want to set Unavailable?",
+//             icon: "info",
+//             showCancelButton: true,
+//             confirmButtonText: "Yes"
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//                 let id = $("#toggleCarAvailabilityButton").data('id');
+
+//                 Livewire.dispatch('updateCarAvailability', id);
+//             }
+//         });
+//     });
+// });
 
 
-function setCarUnavail(id) {
-
-    Swal.fire({
-        title: "Warning!",
-        text: "Are you sure you want to set Unavailable?",
-        icon: "info",
-        showCancelButton: true,
-        confirmButtonText: "Yes"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            console.log("confirmed");
-        }
-        else {
-            console.log("cancelled");
-        }
-    });
-
-}
 
 function approveCarRental(id) {
 

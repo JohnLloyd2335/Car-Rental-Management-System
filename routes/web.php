@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\AccessoryController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CarAccessoryController;
+use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController as CustomerCarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +38,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
 
     //Customer Route
+    Route::group(['middleware' => 'customer'], function () {
+
+        Route::get('/cars', [CustomerCarController::class, 'index'])->name('cars');
+        Route::get('/cars/{car}/view', [CustomerCarController::class, 'show'])->name('car.view');
+
+    });
 
     //Admin Route
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
@@ -55,6 +65,24 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('brand/{id}/edit', [BrandController::class, 'edit'])->name('brand.edit');
         Route::put('brand/{id}/update', [BrandController::class, 'update'])->name('brand.update');
 
+        //Car Accessory Route
+        Route::group(['prefix' => 'car'], function () {
+            Route::get('accessory', [AccessoryController::class, 'index'])->name('accessory.index');
+            Route::get('accessory/add', [AccessoryController::class, 'create'])->name('accessory.create');
+            Route::post('accessory/save', [AccessoryController::class, 'store'])->name('accessory.store');
+            Route::get('accessory/{id}/edit', [AccessoryController::class, 'edit'])->name('accessory.edit');
+            Route::put('accessory/{id}/update', [AccessoryController::class, 'update'])->name('accessory.update');
+        });
+
+        //Car Route
+        Route::get('car', [CarController::class, 'index'])->name('car.index');
+        Route::get('car/{car}/view', [CarController::class, 'show'])->name('car.show');
+        Route::get('car/add', [CarController::class, 'create'])->name('car.create');
+        Route::post('car/save', [CarController::class, 'store'])->name('car.store');
+        Route::get('car/{car}/edit', [CarController::class, 'edit'])->name('car.edit');
+        Route::put('car/{car}/update', [CarController::class, 'update'])->name('car.update');
+        Route::get('car/filter', [CarController::class, 'filterCarDataTable'])->name('car.filter');
+        Route::post('car/{id}/availability/update', [CarController::class, 'toggleCarAvailability'])->name('car.availability.update');
     });
 });
 

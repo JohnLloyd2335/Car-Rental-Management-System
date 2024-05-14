@@ -465,8 +465,46 @@ body {
 }
 
 .main-content .category-table-container .table-button-header-container {
-
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px 0;
+}
+
+
+.main-content .category-table-container .table-button-header-container label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6d6a6a;
+}
+
+
+.main-content .category-table-container .table-button-header-container input {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    padding-left: 8px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+}
+
+.main-content .category-table-container .table-button-header-container label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6d6a6a;
+}
+
+
+.main-content .category-table-container .table-button-header-container select {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    padding-left: 8px;
+    font-size: 18px;
+    outline: none;
+    border: none;
 }
 
 .main-content .category-table-container .table-button-header-container a {
@@ -485,6 +523,13 @@ body {
 
 .main-content .category-table-container .table-button-header-container a:hover {
     background-color: #F88D1D;
+}
+
+
+.main-content .category-table-container .table-button-header-container .table-filter {
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 
 .main-content .category-table-container .table-container table {
@@ -524,6 +569,7 @@ body {
     padding-left: 8px;
     font-size: 18px;
     outline: none;
+    border: none;
 }
 
 .main-content .category-container .add-category-form-container .category-form-group:last-child {
@@ -602,6 +648,7 @@ body {
     padding-left: 8px;
     font-size: 18px;
     outline: none;
+    border: none;
 }
 
 .main-content .category-container .edit-category-form-container .category-form-group:last-child {
@@ -720,7 +767,10 @@ body {
 }
 
 .main-content .brand-table-container .table-button-header-container {
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     padding: 10px 0;
 }
 
@@ -740,6 +790,46 @@ body {
 
 .main-content .brand-table-container .table-button-header-container a:hover {
     background-color: #F88D1D;
+}
+
+.main-content .brand-table-container .table-button-header-container .table-filter {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.main-content .category-table-container .table-button-header-container label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6d6a6a;
+}
+
+
+.main-content .brand-table-container .table-button-header-container input {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    padding-left: 8px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+}
+
+.main-content .brand-table-container .table-button-header-container label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6d6a6a;
+}
+
+
+.main-content .brand-table-container .table-button-header-container select {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    padding-left: 8px;
+    font-size: 18px;
+    outline: none;
+    border: none;
 }
 
 .main-content .brand-table-container .table-container table {
@@ -779,6 +869,8 @@ body {
     border-radius: 3px;
     padding-left: 8px;
     font-size: 18px;
+    border: none;
+    outline: none;
 }
 
 .main-content .brand-container .add-brand-form-container .brand-form-group:last-child {
@@ -856,6 +948,8 @@ body {
     border-radius: 3px;
     padding-left: 8px;
     font-size: 18px;
+    border: none;
+    outline: none;
 }
 
 .main-content .brand-container .edit-brand-form-container .brand-form-group:last-child {
@@ -974,7 +1068,10 @@ body {
 }
 
 .main-content .accessories-table-container .table-button-header-container {
-
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px 0;
 }
 
@@ -994,6 +1091,48 @@ body {
 
 .main-content .accessories-table-container .table-button-header-container a:hover {
     background-color: #F88D1D;
+}
+
+
+.main-content .accessories-table-container .table-button-header-container .table-filter {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+
+.main-content .accessories-table-container .table-button-header-container .table-filter label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6a6a6a;
+}
+
+
+.main-content .accessories-table-container .table-button-header-container .table-filter input {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    padding-left: 8px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+}
+
+.main-content .accessories-table-container .table-button-header-container .table-filter label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6a6a6a;
+}
+
+
+.main-content .accessories-table-container .table-button-header-container .table-filter select {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    padding-left: 8px;
+    font-size: 18px;
+    outline: none;
+    border: none;
 }
 
 .main-content .accessories-table-container .table-container table {
@@ -1236,6 +1375,8 @@ body {
     width: 100%;
 }
 
+
+
 .main-content .car-table-container .table-button-header-container:nth-child(1) {
     flex: 1;
 }
@@ -1286,8 +1427,9 @@ body {
     cursor: pointer;
     text-decoration: none;
     transition: 0.3s ease-out;
+    width: 110px;
+    height: 52.5px;
 }
-
 
 .main-content .car-table-container .table-button-header-container a:hover {
     background-color: #F88D1D;
@@ -1302,7 +1444,6 @@ body {
     padding: 30px 50px;
     background-color: #f7f7f7;
     border-radius: 8px;
-    box-shadow: 1px 1px 1px #2b2828;
     display: flex;
     flex-direction: column;
 }
@@ -1324,7 +1465,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: start;
-    justify-content: center;
+    justify-content: end;
     gap: 3px;
 }
 
@@ -1341,6 +1482,7 @@ body {
     border-radius: 3px;
     padding-left: 8px;
     font-size: 18px;
+    outline: none;
 }
 
 
@@ -1366,6 +1508,7 @@ body {
     font-size: 18px;
     font-weight: 400;
     resize: none;
+    outline: none;
 }
 
 .main-content .car-container .add-car-form-container .car-form-group .car-form-group-column select {
@@ -1379,7 +1522,6 @@ body {
 /* Style the dropdown container */
 .select2-container {
     width: 300px;
-    border: 1px solid red;
     /* Adjust width as needed */
 }
 
@@ -1452,6 +1594,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-out;
+    text-decoration: none;
 }
 
 
@@ -1556,7 +1699,7 @@ body {
 /* Style the dropdown container */
 .select2-container {
     width: 300px;
-    border: 1px solid red;
+    outline: none;
     /* Adjust width as needed */
 }
 
@@ -1566,6 +1709,11 @@ body {
     padding: 0 5px;
     border-radius: 5px;
     height: 50px;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: none;
+    outline: none;
 }
 
 /* Style the selected options */
@@ -1973,8 +2121,8 @@ body {
 .view-car-container .car-info-container .car-table-info table tbody tr td {
     text-align: center;
     padding: 10px;
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 600;
     background-color: #e6e3e3;
 }
 
@@ -2025,8 +2173,8 @@ body {
 }
 
 .view-car-container .car-info-container .car-detail-tab-content .tab-item-content p {
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 500;
     text-align: justify;
     text-justify: inter-word;
 }
@@ -2048,8 +2196,8 @@ body {
 
 .view-car-container .car-info-container .car-details-tab .car-detail-tab-content .tab-item-content ul li {
     list-style: none;
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .view-car-container .car-info-container .car-other-info-container {
@@ -3314,6 +3462,18 @@ main .rental-info-container .rental-info .info p {
 
 a {
     text-decoration: none;
+}
+
+#no-accessory-found {
+    text-align: center;
+    width: 100%
+}
+
+.action-table-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 @media only screen and (max-width: 600px) {

@@ -12,7 +12,7 @@
                     asperiores nihil. Cum.
                 </p>
                 <div class="hero-link-container">
-                    <a href="" class="main-button hero-link">Browse Cars</a>
+                    <a href="{{ route('cars') }}" class="main-button hero-link">Browse Cars</a>
                 </div>
             </div>
             <div class="hero-image">

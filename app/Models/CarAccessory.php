@@ -10,10 +10,15 @@ class CarAccessory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'car_id', 'name'];
+    protected $fillable = ['id', 'car_id', 'accessory_id'];
 
     public function car(): BelongsTo
     {
         return $this->belongsTo(Car::class);
+    }
+
+    public function accessory(): BelongsTo
+    {
+        return $this->belongsTo(Accessory::class);
     }
 }
