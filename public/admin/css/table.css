@@ -8,7 +8,9 @@ table thead {
     height: 60px;
 }
 
-
+table thead tr th {
+    padding: 10px 20px;
+}
 
 table thead tr {
     padding: 10px 0;
@@ -28,10 +30,10 @@ table tbody tr {
 
 
 table tbody tr td {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     border-bottom: 1px solid #6d6a6a;
-    padding: 10px 0;
+    padding: 10px 20px;
     color: #494949;
 }
 
@@ -56,6 +58,13 @@ table tbody tr td button:hover {
 
 table tbody tr td button i {
     font-size: 20px;
+}
+
+table tbody tr .td-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 table tbody tr td a {

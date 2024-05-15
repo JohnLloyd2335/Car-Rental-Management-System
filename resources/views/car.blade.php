@@ -80,8 +80,12 @@
                 </div>
 
                 <div class="car-other-info-container">
-                    <button class="rent-car-btn">Rent this Car</button>
-                    <p>{{ $car->rentals->count() }} people rent this Car</p>
+                    @if ($has_rental->count() > 0)
+                        <p>You already have {{ $has_rental[0]->status }} Rental on this car</p>
+                    @else
+                        <button class="rent-car-btn">Rent this Car</button>
+                    @endif
+                    <p>{{ $completed_rentals_count }} people rent this Car</p>
                 </div>
             </div>
         </div>
@@ -225,7 +229,7 @@
         <div class="rent-car-modal-footer">
             <div class="row-1">
                 <button class="close-rent-modal rent-car-modal-close">Close</button>
-                <button class="rent-car-save-btn">Rent</button>
+                <button class="rent-car-save-btn" onclick="rentCar({{ $car->id }})">Rent</button>
             </div>
         </div>
     </div>

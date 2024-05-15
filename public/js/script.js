@@ -132,10 +132,6 @@ $(document).ready(function () {
       $(this).val(value);
     }
   })
-
-
-
-
 });
 
 //set rent end date max val
@@ -170,12 +166,16 @@ function computeTotalAmount(pricePerDay) {
     totalAmount = 0;
     daysHTML.val("0");
   }
+  else if ($("#start_date").val() == $("#end_date").val()) {
+    days = 1;
+    totalAmount = parseFloat(pricePerDay) * parseFloat(days);
+  }
   else {
     let timeDifference = endDateToDate.getTime() - startDateToDate.getTime();
     days = Math.ceil(timeDifference / (1000 * 3600 * 24));
-    daysHTML.val(days);
     totalAmount = parseFloat(pricePerDay) * parseFloat(days);
   }
+  daysHTML.val(days);
   totalAmountHTML.val("₱ " + parseFloat(totalAmount).toFixed(2))
 }
 
@@ -244,6 +244,98 @@ function serverErrorAlert() {
     text: "Oops, There was an error",
     icon: "error"
   });
+}
+
+function clearRentalModalField() {
+  let startDate = $("#start_date");
+  let endDate = $("#end_date");
+  let days = $("#days");
+  let total_amount = $("#total_amount")
+
+  startDate.val("");
+  endDate.val("");
+  endDate.attr('disabled', true);
+  days.val("0");
+  total_amount.val("₱ 0.00");
+}
+
+function rentCar(carId) {
+
+  let startDate = $('#start_date');
+  let endDate = $('#end_date');
+  let totalAmount = $("#total_amount").val();
+  totalAmount = parseFloat(totalAmount.slice(2));
+
+  startDate.hasClass('input-error') ? $('#start_date').removeClass('input-error') : '';
+
+  if (totalAmount <= 0) {
+    Swal.fire({
+      title: 'Warning',
+      text: 'Please Complete All Details',
+      icon: 'warning'
+    });
+
+    return;
+  }
+  console.log(carId, startDate.val(), endDate.val(), totalAmount);
+  $.ajax({
+    url: 'rent',
+    method: 'GET',
+    contentType: 'application/json',
+    dataType: 'JSON',
+    data: {
+      car_id: carId,
+      start_date: startDate.val(),
+      end_date: endDate.val(),
+      total_amount: totalAmount
+    },
+    headers: {
+      'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
+    },
+
+    success: function (response) {
+      Swal.fire({
+        title: 'Success',
+        text: response.message,
+        icon: 'success'
+      });
+
+      clearRentalModalField();
+
+
+      $(".rent-car-modal").hide();
+
+    },
+    error: function (error) {
+      console.log(error);
+
+      let responseMessage = error.responseJSON.message;
+
+      if (error.status == 422) {
+        let errors = error.responseJSON.errors;
+
+        let inputKeys = [
+          'start_date', 'end_date'
+        ];
+
+        $.each(errors, (key, value) => {
+          if (inputKeys.includes(key)) {
+            $(`#${key}`).addClass('input-error');
+          }
+        });
+
+        Swal.fire({
+          title: 'Error',
+          text: responseMessage,
+          icon: 'error'
+        });
+
+      }
+
+
+    }
+  });
+
 }
 
 

@@ -42,6 +42,8 @@
                         <option value="priceASC">Price : High to Low</option>
                         <option value="priceDESC">
                             Price : Low to High</option>
+                        <option value="rentalCountASC">Rental Count: High to Low</option>
+                        <option value="rentalCountDESC">Rental Count: Low to High</option>
                     </select>
                 </div>
             </div>
@@ -54,6 +56,7 @@
                         <th>Brand</th>
                         <th>Model</th>
                         <th>Price Per Day</th>
+                        <th>Rental Count</th>
                         <th>Availability</th>
                         <th>Date Added</th>
                         <th>Action</th>
@@ -66,6 +69,7 @@
                             <td>{{ $car->brand->name }}</td>
                             <td>{{ $car->model }}</td>
                             <td>{{ '₱' . number_format($car->price_per_day, 2) }}</td>
+                            <td>{{ $car->rentals_count }}</td>
                             <td>
                                 @if ($car->is_available)
                                     <p class="badge-success">Available</p>

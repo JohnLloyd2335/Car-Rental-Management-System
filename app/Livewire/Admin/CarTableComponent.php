@@ -39,6 +39,12 @@ class CarTableComponent extends Component
 
         $cars = Car::with(['category', 'brand']);
 
+        $cars = $cars->withCount([
+            'rentals' => function ($query) {
+                $query->whereIn('status', ['Active', 'Overdue', 'Completed']);
+            }
+        ]);
+
         if ($this->category_id != "ALL") {
             $cars = $cars->where("category_id", $this->category_id);
         }
@@ -54,11 +60,12 @@ class CarTableComponent extends Component
         if ($this->more_options != "Default") {
 
             if (in_array($this->more_options, ['priceASC', 'priceDESC'])) {
-
                 $order = ($this->more_options == "priceASC") ? 'DESC' : 'ASC';
                 $cars = $cars->orderBy('price_per_day', $order);
+            } else if (in_array($this->more_options, ['rentalCountASC', 'rentalCountDESC'])) {
+                $order = ($this->more_options == 'rentalCountASC') ? 'DESC' : 'ASC';
+                $cars = $cars->orderBy('rentals_count', $order);
             }
-
         }
 
 

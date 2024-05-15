@@ -44,7 +44,7 @@
                         class="text-link">Accessories</span></a>
                 <a class="link {{ Route::is('car.index') ? 'active-link' : '' }}" href="{{ route('car.index') }}"><i
                         class="fas fa-car"></i><span class="text-link">Cars</span></a>
-                <a class="link" href="#"><i class="fas fa-calendar"></i><span
+                <a class="link " href="{{ route('rental.index') }}"><i class="fas fa-calendar"></i><span
                         class="text-link">Rentals</span></a>
                 <a class="link" href="#"><i class="fas fa-chart-simple"></i><span
                         class="text-link">Reports</span></a>

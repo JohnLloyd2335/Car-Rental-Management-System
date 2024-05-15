@@ -6,8 +6,10 @@ use App\Http\Controllers\Admin\CarAccessoryController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RentalController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RentalController as CustomerRentalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController as CustomerCarController;
 
@@ -40,8 +42,13 @@ Route::group(['middleware' => 'auth'], function () {
     //Customer Route
     Route::group(['middleware' => 'customer'], function () {
 
+        //Brawse Car
         Route::get('/cars', [CustomerCarController::class, 'index'])->name('cars');
+        //View Car
         Route::get('/cars/{car}/view', [CustomerCarController::class, 'show'])->name('car.view');
+        //Rent Car
+        Route::get('cars/{car}/rent', [CustomerRentalController::class, 'store'])->name('car.rent');
+
 
     });
 
@@ -83,6 +90,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('car/{car}/update', [CarController::class, 'update'])->name('car.update');
         Route::get('car/filter', [CarController::class, 'filterCarDataTable'])->name('car.filter');
         Route::post('car/{id}/availability/update', [CarController::class, 'toggleCarAvailability'])->name('car.availability.update');
+
+        //Rental Route
+        Route::get('rental', [RentalController::class, 'index'])->name('rental.index');
+        Route::get('rental/pending', [RentalController::class, 'pendingIndex'])->name('rental.pending.index');
+        Route::get('rental/pending/{rental}/show', [RentalController::class, 'pendingShow'])->name('rental.pending.show');
     });
 });
 
