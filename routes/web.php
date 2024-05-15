@@ -26,7 +26,10 @@ use App\Http\Controllers\CarController as CustomerCarController;
 //Index Route
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
-//Handle Authentication Routes
+//Brawse Car
+Route::get('/cars', [CustomerCarController::class, 'index'])->name('cars');
+
+//Handle Authentication Route           s
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login/handleLogin', [AuthController::class, 'handleLogin'])->name('handleLlogin');
 
@@ -42,8 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
     //Customer Route
     Route::group(['middleware' => 'customer'], function () {
 
-        //Brawse Car
-        Route::get('/cars', [CustomerCarController::class, 'index'])->name('cars');
         //View Car
         Route::get('/cars/{car}/view', [CustomerCarController::class, 'show'])->name('car.view');
         //Rent Car
@@ -93,8 +94,16 @@ Route::group(['middleware' => 'auth'], function () {
 
         //Rental Route
         Route::get('rental', [RentalController::class, 'index'])->name('rental.index');
+
+        //Rental Pending Route
         Route::get('rental/pending', [RentalController::class, 'pendingIndex'])->name('rental.pending.index');
         Route::get('rental/pending/{rental}/show', [RentalController::class, 'pendingShow'])->name('rental.pending.show');
+        Route::post('rental/pending/{rental}/cancel', [RentalController::class, 'cancelRental'])->name('rental.pending.cancel');
+
+        //Cancelled Rental Route
+        Route::get('rental/cancelled', [RentalController::class, 'cancelledIndex'])->name('rental.cancelled.index');
+        Route::get('rental/cancelled/{rental}/show', [RentalController::class, 'cancelledShow'])->name('rental.cancelled.show');
+
     });
 });
 

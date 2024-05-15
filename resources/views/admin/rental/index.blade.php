@@ -10,7 +10,7 @@
 
             <div class="rental-module-container">
 
-                <a class="module bg-dark" href="#">
+                <a class="module bg-dark" href="{{ route('rental.pending.index') }}">
                     <div class="module-icon-container">
                         <i class="fas fa-calendar"></i>
                     </div>
@@ -19,7 +19,7 @@
                     </div>
                 </a>
 
-                <a class="module bg-primary" href="#">
+                <a class="module bg-primary">
                     <div class="module-icon-container">
                         <i class="fas fa-calendar-plus"></i>
                     </div>
@@ -28,7 +28,7 @@
                     </div>
                 </a>
 
-                <a class="module bg-danger" href="#">
+                <a class="module bg-danger" href="{{ route('rental.cancelled.index') }}">
                     <div class="module-icon-container">
                         <i class="fas fa-calendar-times"></i>
                     </div>

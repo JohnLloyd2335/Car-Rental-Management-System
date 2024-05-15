@@ -48,14 +48,11 @@
                             @endphp
                             <td>{{ $amount }}</td>
                             <td>
-                                <p class="badge-primary">{{ $rental->status }}</p>
+                                <p class="badge-danger">{{ $rental->status }}</p>
                             </td>
                             <td class="td-action">
-                                <a href="{{ route('rental.pending.show', $rental) }}" class="bg-success"><i
+                                <a href="{{ route('rental.cancelled.show', $rental) }}" class="bg-success"><i
                                         class="fas fa-eye"></i></a>
-                                <button class="bg-primary"><i class="fas fa-check"></i></button>
-                                <button class="bg-dark" wire:click="cancelRental({{ $rental->id }})"><i
-                                        class="fas fa-x"></i></button>
                             </td>
                         </tr>
                     @empty
@@ -71,56 +68,4 @@
             </div>
         </div>
     </div>
-
-
-    @script
-        <script>
-            $wire.on('dispatchCancelRental', (id) => {
-
-                Swal.fire({
-                    title: 'Are you sure you want to cancel Rental?',
-                    text: '',
-                    icon: 'warning',
-                    confirmButtonText: 'Yes',
-                    showCancelButton: true,
-                    html: "<div><textarea style='margin: 5px 10px; resize:none;width : 400px;height: 100px;padding: 2px 5px; font-size:22px;' placeholder='Reason' id='reason'></textarea></div>"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-
-                        let url = `pending/${id}/cancel`;
-                        let token = $("meta[name='csrf-token']").attr('content');
-                        let reason = $("#reason").val();
-
-                        $.ajax({
-                            url: url,
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': token
-                            },
-                            data: {
-                                reason: reason
-                            },
-                            success: function(response) {
-                                Swal.fire({
-                                    title: 'Success',
-                                    text: response.message,
-                                    icon: 'success'
-                                });
-
-                                window.location.reload();
-                            },
-                            error: function(error) {
-                                Swal.fire({
-                                    title: "Server Error",
-                                    text: error.responseJSON.message,
-                                    icon: "error"
-                                });
-                            }
-                        });
-
-                    }
-                });
-            });
-        </script>
-    @endscript
 </div>

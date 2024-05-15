@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\Rental;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RentalController extends Controller
 {
@@ -34,4 +35,60 @@ class RentalController extends Controller
 
         return view("admin.rental.view-pending-rental", compact("rental", "car_images", "car_accessories", "days", "amount"));
     }
+
+    public function cancelRental(string|int $id, Request $request)
+    {
+
+        DB::beginTransaction();
+        try {
+            $reason = !empty($request->reason) ? $request->reason : null;
+            $rental = Rental::findOrFail($id);
+            $rental->update([
+                'status' => 'Cancelled',
+                'cancellation_reason' => $request?->reason,
+                'date_cancelled' => now()
+            ]);
+
+            DB::commit();
+
+            $success_response = [
+                'success' => true,
+                'message' => 'Rental Status Successfully Set to Active'
+            ];
+
+            return response()->json($success_response);
+        } catch (\Throwable $th) {
+
+            $fail_response = [
+                'success' => false,
+                'message' => $th->getMessage(),
+            ];
+
+            DB::rollBack();
+
+            return response()->json($fail_response);
+        }
+    }
+
+    public function cancelledIndex()
+    {
+        return view('admin.rental.cancelled');
+    }
+
+    public function cancelledShow(Rental $rental)
+    {
+        $rental->load(['user']);
+        $rental->car->load(['category', 'brand', 'car_accessories']);
+        $car_images = json_decode($rental->car->images);
+        $car_accessories = $rental->car->car_accessories;
+        $start_date = Carbon::parse($rental->start_date);
+        $end_date = Carbon::parse($rental->end_date);
+        $days = $start_date->diffInDays($end_date);
+        $amount = "₱" . number_format($rental->car->price_per_day * $days);
+
+
+        return view("admin.rental.view-cancelled-rental", compact("rental", "car_images", "car_accessories", "days", "amount"));
+    }
+
+
 }
