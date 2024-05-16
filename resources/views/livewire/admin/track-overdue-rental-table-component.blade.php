@@ -1,9 +1,12 @@
 <div>
-
+    </style>
     <div class="car-table-container">
         <div class="table-button-header-container">
 
             <div class="table-filter-container">
+                <div>
+                    <button class="bg-main" id="markAsDoneButton">Mark as Overdue</button>
+                </div>
                 <div>
                     <label>Rental Date</label>
                     <select name="category" wire:model.change="orderBy">
@@ -21,6 +24,7 @@
             <table id="pendingRentalTable" class="display" style="width:100%">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" value="wew"></th>
                         <th>Customer Name</th>
                         <th>Car Details</th>
                         <th>Reservation Date</th>
@@ -28,6 +32,8 @@
                         <th>End date</th>
                         <th>Rental Days</th>
                         <th>Amount</th>
+                        <th>Overdue Days</th>
+                        <th>Penalty</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -35,6 +41,7 @@
                 <tbody>
                     @forelse ($rentals as $rental)
                         <tr wire:key="{{ $rental->id }}">
+                            <td><input type="checkbox" name="ids[]"></td>
                             <td>{{ $rental->user->name }}</td>
                             <td>{{ $rental->car->brand->name }} - {{ $rental->car->model }} -
                                 ₱{{ number_format($rental->car->price_per_day, 2) }}</td>
@@ -51,17 +58,22 @@
                                     $days = 1;
                                     $amount = '₱' . number_format($rental->car->price_per_day, 2);
                                 }
+
+                                $over_due_days = $end_date->diffInDays(now()) == 0 ? '1' : $end_date->diffInDays(now());
+                                $penalty_amount = '₱' . number_format($over_due_days * $rental->car->price_per_day, 2);
                             @endphp
                             <td>{{ $days }}</td>
                             <td>{{ $amount }}</td>
-
+                            <td>{{ $over_due_days }}</td>
+                            <td>{{ $penalty_amount }}</td>
                             <td>
-                                <p class="badge-danger">{{ $rental->status }}</p>
+                                <p class="badge-primary">{{ $rental->status }}</p>
                             </td>
                             <td>
                                 <div class="td-action">
-                                    <a href="{{ route('rental.cancelled.show', $rental) }}" class="bg-success"><i
-                                            class="fas fa-eye"></i></a>
+
+                                    <a href="{{ route('utility.track-overdue.rental.show', $rental->id) }}"
+                                        class="bg-success"><i class="fas fa-eye"></i></a>
                                 </div>
                             </td>
                         </tr>
@@ -78,4 +90,5 @@
             </div>
         </div>
     </div>
+
 </div>

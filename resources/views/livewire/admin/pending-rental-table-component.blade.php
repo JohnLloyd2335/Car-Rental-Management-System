@@ -26,6 +26,7 @@
                         <th>Reservation Date</th>
                         <th>Start Date</th>
                         <th>End date</th>
+                        <th>Days</th>
                         <th>Amount</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -43,24 +44,34 @@
                             @php
                                 $start_date = Carbon\Carbon::parse($rental->start_date);
                                 $end_date = Carbon\Carbon::parse($rental->end_date);
-                                $days = $start_date->diffInDays($rental->end_date);
-                                $amount = '₱' . number_format($rental->car->price_per_day * $days, 2);
+                                if (!$start_date->eq($end_date)) {
+                                    $days = $start_date->diffInDays($end_date);
+                                    $amount = '₱' . number_format($rental->car->price_per_day * $days, 2);
+                                } else {
+                                    $days = 1;
+                                    $amount = '₱' . number_format($rental->car->price_per_day, 2);
+                                }
                             @endphp
+                            <td>{{ $days }}</td>
                             <td>{{ $amount }}</td>
                             <td>
-                                <p class="badge-primary">{{ $rental->status }}</p>
+                                <p class="badge-dark">{{ $rental->status }}</p>
                             </td>
-                            <td class="td-action">
-                                <a href="{{ route('rental.pending.show', $rental) }}" class="bg-success"><i
-                                        class="fas fa-eye"></i></a>
-                                <button class="bg-primary"><i class="fas fa-check"></i></button>
-                                <button class="bg-dark" wire:click="cancelRental({{ $rental->id }})"><i
-                                        class="fas fa-x"></i></button>
+                            <td>
+                                <div class="td-action">
+
+                                    <a href="{{ route('rental.pending.show', $rental) }}" class="bg-success"><i
+                                            class="fas fa-eye"></i></a>
+                                    <button class="bg-primary" onclick="approveRental({{ $rental->id }})"><i
+                                            class="fas fa-check"></i></button>
+                                    <button class="bg-dark" wire:click="cancelRental({{ $rental->id }})"><i
+                                            class="fas fa-x"></i></button>
+                                </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8">No Record Found</td>
+                            <td colspan="9">No Record Found</td>
                         </tr>
                     @endforelse
                 </tbody>

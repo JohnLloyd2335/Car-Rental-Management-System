@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RentalController;
+use App\Http\Controllers\Admin\UtilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RentalController as CustomerRentalController;
@@ -95,15 +96,23 @@ Route::group(['middleware' => 'auth'], function () {
         //Rental Route
         Route::get('rental', [RentalController::class, 'index'])->name('rental.index');
 
-        //Rental Pending Route
+        //Pending Rental Route
         Route::get('rental/pending', [RentalController::class, 'pendingIndex'])->name('rental.pending.index');
         Route::get('rental/pending/{rental}/show', [RentalController::class, 'pendingShow'])->name('rental.pending.show');
+        Route::post('rental/pending/{id}/setActive', [RentalController::class, 'approveRental'])->name('rental.pending.setActive');
         Route::post('rental/pending/{rental}/cancel', [RentalController::class, 'cancelRental'])->name('rental.pending.cancel');
 
         //Cancelled Rental Route
         Route::get('rental/cancelled', [RentalController::class, 'cancelledIndex'])->name('rental.cancelled.index');
         Route::get('rental/cancelled/{rental}/show', [RentalController::class, 'cancelledShow'])->name('rental.cancelled.show');
 
+        //Active Rental Route
+        Route::get('rental/active', [RentalController::class, 'activeIndex'])->name('rental.active.index');
+
+        //Utility Route
+        Route::get('utility', [UtilityController::class, 'index'])->name('utility.index');
+        Route::get('utility/track-overdue', [UtilityController::class, 'trackOverdueIndex'])->name('utility.track-overdue');
+        Route::get('utility/track-overdue/{id}/show', [UtilityController::class, 'overdueShow'])->name('utility.track-overdue.rental.show');
     });
 });
 

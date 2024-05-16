@@ -1427,6 +1427,18 @@ body {
     color: #2b2828;
 }
 
+
+.main-content .car-table-container .table-button-header-container .table-filter-container>div button {
+    height: 45px;
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    justify-self: center;
+    margin-top: 25px;
+    margin-right: 910px;
+}
+
 .main-content .car-table-container .table-button-header-container a {
     font-size: 20px;
     padding: 15px;

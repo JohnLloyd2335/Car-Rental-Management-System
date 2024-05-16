@@ -48,6 +48,9 @@
                         class="text-link">Rentals</span></a>
                 <a class="link" href="#"><i class="fas fa-chart-simple"></i><span
                         class="text-link">Reports</span></a>
+                <a class="link {{ Route::is('utility.index') ? 'active-link' : '' }}"
+                    href="{{ route('utility.index') }}"><i class="fas fa-wrench"></i><span
+                        class="text-link">Utilities</span></a>
                 <a class="link" href="#"><i class="fas fa-users"></i><span class="text-link">Manage
                         Users</span></a>
             </div>

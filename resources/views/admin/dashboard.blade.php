@@ -8,7 +8,7 @@
                     <i class="fas fa-car"></i>
                 </div>
                 <div class="card-info-container">
-                    <h3>45</h3>
+                    <h3>{{ $available_cars_count }}</h3>
                     <h4>AVAILABLE CARS</h4>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     <i class="fas fa-calendar"></i>
                 </div>
                 <div class="card-info-container">
-                    <h3>5</h3>
+                    <h3>{{ $active_rentals_count }}</h3>
                     <h4>ACTIVE RENTALS</h4>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <i class="fas fa-ticket"></i>
                 </div>
                 <div class="card-info-container">
-                    <h3>12</h3>
+                    <h3>{{ $pending_rentals_count }}</h3>
                     <h4>PENDING RESERVATION</h4>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                     <i class="fas fa-dollar"></i>
                 </div>
                 <div class="card-info-container">
-                    <h3>3,564,012</h3>
+                    <h3>{{ $total_revenue }}</h3>
                     <h4>TOTAL REVENUE</h4>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="card-info-container">
-                    <h3>4.5</h3>
+                    <h3>{{ $car_ratings }}</h3>
                     <h4>CARS AVERAGE RATINGS</h4>
                 </div>
             </div>

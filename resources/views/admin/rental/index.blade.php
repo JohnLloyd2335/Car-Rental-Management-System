@@ -19,7 +19,7 @@
                     </div>
                 </a>
 
-                <a class="module bg-primary">
+                <a class="module bg-primary" href="{{ route('rental.active.index') }}">
                     <div class="module-icon-container">
                         <i class="fas fa-calendar-plus"></i>
                     </div>

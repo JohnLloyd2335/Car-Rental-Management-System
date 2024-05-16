@@ -35,8 +35,11 @@
                             <td>{{ $category->cars_count }}</td>
                             <td>{{ date('M d, Y h:i A', strtotime($category->created_at)) }}</td>
                             <td>
-                                <a href="{{ route('category.edit', $category) }}" class="bg-primary"><i
-                                        class="fas fa-edit"></i></a>
+                                <div class="td-action">
+
+                                    <a href="{{ route('category.edit', $category) }}" class="bg-primary"><i
+                                            class="fas fa-edit"></i></a>
+                                </div>
                             </td>
                         </tr>
                     @empty

@@ -26,7 +26,7 @@
                         <th>Reservation Date</th>
                         <th>Start Date</th>
                         <th>End date</th>
-                        <th>Rental Days</th>
+                        <th>Days</th>
                         <th>Amount</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -54,15 +54,15 @@
                             @endphp
                             <td>{{ $days }}</td>
                             <td>{{ $amount }}</td>
-
                             <td>
-                                <p class="badge-danger">{{ $rental->status }}</p>
+                                <p class="badge-primary">{{ $rental->status }}</p>
                             </td>
-                            <td>
-                                <div class="td-action">
-                                    <a href="{{ route('rental.cancelled.show', $rental) }}" class="bg-success"><i
-                                            class="fas fa-eye"></i></a>
-                                </div>
+                            <td class="td-action">
+                                <a href="{{ route('rental.pending.show', $rental) }}" class="bg-success"><i
+                                        class="fas fa-eye"></i></a>
+                                <button class="bg-primary"><i class="fas fa-check"></i></button>
+                                <button class="bg-dark" wire:click="cancelRental({{ $rental->id }})"><i
+                                        class="fas fa-x"></i></button>
                             </td>
                         </tr>
                     @empty
@@ -78,4 +78,5 @@
             </div>
         </div>
     </div>
+
 </div>
