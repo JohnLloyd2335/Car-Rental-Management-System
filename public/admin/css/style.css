@@ -1430,6 +1430,7 @@ body {
 
 .main-content .car-table-container .table-button-header-container .table-filter-container>div button {
     height: 45px;
+    width: 220px;
     color: #fff;
     outline: none;
     border: none;

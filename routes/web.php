@@ -113,6 +113,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('utility', [UtilityController::class, 'index'])->name('utility.index');
         Route::get('utility/track-overdue', [UtilityController::class, 'trackOverdueIndex'])->name('utility.track-overdue');
         Route::get('utility/track-overdue/{id}/show', [UtilityController::class, 'overdueShow'])->name('utility.track-overdue.rental.show');
+        Route::post('utility/track-overdue/mark-as-overdue', [UtilityController::class, 'markAsOverdue'])->name('utility.track-overdue.rental.markAsOverdue');
     });
 });
 

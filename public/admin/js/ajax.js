@@ -72,8 +72,61 @@ function approveRental(id) {
 
 }
 
-$('#markAsDoneButton').click(function () {
-});
+function markAsOverdue(rental_ids) {
+    if (!rental_ids.length > 0) {
+        Swal.fire({
+            title: "Warning",
+            text: "Please select a record",
+            icon: "warning"
+        });
+    }
+    else {
+        Swal.fire({
+            title: "Warning",
+            text: "Are you sure you want to mark as overdue selected records?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                let url = 'track-overdue/mark-as-overdue';
+                let token = $("meta[name='csrf-token']").attr("content");
+
+                $.ajax({
+                    url: url,
+                    token: token,
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    },
+                    data: {
+                        rental_ids: rental_ids
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Success',
+                            text: response.message,
+                            icon: 'success'
+                        });
+
+                        window.location.reload();
+                    },
+                    error: function (error) {
+
+                        Swal.fire({
+                            title: 'Server Error',
+                            text: error.responseJSON.message,
+                            icon: 'error'
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+}
+
 
 
 

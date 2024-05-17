@@ -1,11 +1,12 @@
 <div>
-    </style>
     <div class="car-table-container">
         <div class="table-button-header-container">
 
             <div class="table-filter-container">
                 <div>
-                    <button class="bg-main" id="markAsDoneButton">Mark as Overdue</button>
+                    <button class="bg-main" id="markAsDoneButton"
+                        onclick="markAsOverdue({{ json_encode($rental_ids) }})">Mark
+                        as Overdue</button>
                 </div>
                 <div>
                     <label>Rental Date</label>
@@ -24,7 +25,7 @@
             <table id="pendingRentalTable" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" value="wew"></th>
+                        <th></th>
                         <th>Customer Name</th>
                         <th>Car Details</th>
                         <th>Reservation Date</th>
@@ -41,7 +42,10 @@
                 <tbody>
                     @forelse ($rentals as $rental)
                         <tr wire:key="{{ $rental->id }}">
-                            <td><input type="checkbox" name="ids[]"></td>
+
+                            <td><input type="checkbox" wire:click="updateArrayIds({{ $rental->id }})"
+                                    value="{{ $rental->id }}"
+                                    {{ in_array($rental->id, $rental_ids) ? 'checked' : '' }}></td>
                             <td>{{ $rental->user->name }}</td>
                             <td>{{ $rental->car->brand->name }} - {{ $rental->car->model }} -
                                 ₱{{ number_format($rental->car->price_per_day, 2) }}</td>
@@ -79,7 +83,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="9">No Record Found</td>
+                            <td colspan="12">No Record Found</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Rental;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class UtilityController extends Controller
@@ -35,4 +36,36 @@ class UtilityController extends Controller
 
         return view("admin.utility.view-overdue-rental", compact("rental", "car_images", "car_accessories", "days", "amount", "over_due_days", "penalty_amount"));
     }
+
+    public function markAsOverdue(Request $request)
+    {
+        $rental_ids = $request->rental_ids ?? [];
+
+        try {
+            DB::beginTransaction();
+
+            $overdue_rentals = Rental::where('status', 'Active')->whereDate('end_date', '<=', now())->whereIn('id', $rental_ids)->get();
+
+            foreach ($overdue_rentals as $rental) {
+                $rental->update(['status' => 'Overdue']);
+            }
+
+            DB::commit();
+
+            $success_response = [
+                'success' => true,
+                'message' => 'Records Successfully Mark as Overdue'
+            ];
+
+            return response()->json($success_response);
+        } catch (\Throwable $th) {
+            $failed_response = [
+                "success" => false,
+                "message" => $th->getMessage(),
+            ];
+            DB::rollBack();
+            return response()->json($failed_response, 500);
+        }
+    }
+
 }

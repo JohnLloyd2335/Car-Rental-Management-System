@@ -132,4 +132,5 @@ class RentalController extends Controller
     }
 
 
+
 }
