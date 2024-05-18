@@ -28,6 +28,8 @@
                         <th>End date</th>
                         <th>Rental Days</th>
                         <th>Amount</th>
+                        <th>Date Cancelled</th>
+                        <th>Reason</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -54,7 +56,8 @@
                             @endphp
                             <td>{{ $days }}</td>
                             <td>{{ $amount }}</td>
-
+                            <td>{{ $rental->date_cancelled }}</td>
+                            <td>{{ $rental->cancellation_reason }}</td>
                             <td>
                                 <p class="badge-danger">{{ $rental->status }}</p>
                             </td>
@@ -67,7 +70,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="9">No Record Found</td>
+                            <td colspan=11">No Record Found</td>
                         </tr>
                     @endforelse
                 </tbody>

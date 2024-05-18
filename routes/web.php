@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CarAccessoryController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PDFController;
 use App\Http\Controllers\Admin\RentalController;
 use App\Http\Controllers\Admin\UtilityController;
 use App\Http\Controllers\AuthController;
@@ -106,8 +107,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('rental/cancelled', [RentalController::class, 'cancelledIndex'])->name('rental.cancelled.index');
         Route::get('rental/cancelled/{rental}/show', [RentalController::class, 'cancelledShow'])->name('rental.cancelled.show');
 
+
         //Active Rental Route
         Route::get('rental/active', [RentalController::class, 'activeIndex'])->name('rental.active.index');
+        Route::get('rental/active/{rental}/show', [RentalController::class, 'activeShow'])->name('rental.active.show');
+        Route::post('rental/active/{id}/mark-as-completed', [RentalController::class, 'markAsCompleted'])->name('rental.active.markAsCompleted');
 
         //Utility Route
         Route::get('utility', [UtilityController::class, 'index'])->name('utility.index');
@@ -116,4 +120,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('utility/track-overdue/mark-as-overdue', [UtilityController::class, 'markAsOverdue'])->name('utility.track-overdue.rental.markAsOverdue');
     });
 });
+
+//Bugs - CSS not working
+Route::get('pdf/{rental}/compute-partial', [PDFController::class, 'computePartial'])->name('pdf.compute-partial');
 

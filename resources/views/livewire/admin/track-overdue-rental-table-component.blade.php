@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="table-container">
-            <table id="pendingRentalTable" class="display" style="width:100%">
+            <table id="trackOverdueRentalTable" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th></th>
@@ -31,6 +31,7 @@
                         <th>Reservation Date</th>
                         <th>Start Date</th>
                         <th>End date</th>
+                        <th>Date Approved</th>
                         <th>Rental Days</th>
                         <th>Amount</th>
                         <th>Overdue Days</th>
@@ -52,6 +53,7 @@
                             <td>{{ $rental->created_at }}</td>
                             <td>{{ $rental->start_date }}</td>
                             <td>{{ $rental->end_date }}</td>
+                            <td>{{ $rental->date_approved }}</td>
                             @php
                                 $start_date = Carbon\Carbon::parse($rental->start_date);
                                 $end_date = Carbon\Carbon::parse($rental->end_date);
@@ -83,7 +85,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="12">No Record Found</td>
+                            <td colspan="13">No Record Found</td>
                         </tr>
                     @endforelse
                 </tbody>

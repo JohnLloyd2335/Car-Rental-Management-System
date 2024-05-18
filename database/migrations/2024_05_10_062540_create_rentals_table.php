@@ -18,14 +18,13 @@ return new class extends Migration {
             $table->dateTime('end_date');
             $table->enum('status', ['Pending', 'Active', 'Cancelled', 'Overdue', 'Completed']);
             $table->boolean('is_paid')->default(false);
-            $table->double('amount_paid', 5, 2)->nullable();
+            $table->double('amount_paid', 8, 2)->nullable();
             $table->dateTime('date_paid')->nullable();
-            $table->double('penalties', 5, 2)->nullable();
+            $table->double('penalties', 8, 2)->nullable();
             $table->string('cancellation_reason')->nullable();
             $table->dateTime('date_approved')->nullable();
             $table->dateTime('date_cancelled')->nullable();
             $table->dateTime('date_returned')->nullable();
-            $table->dateTime('date_late_returned')->nullable();
             $table->dateTime('date_completed')->nullable();
             $table->timestamps();
         });

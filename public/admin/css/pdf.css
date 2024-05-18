@@ -1,0 +1,268 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100.900;1,100.900&display=swap'); */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*font-family: "Montserrat", sans-serif;*/
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    margin: 50px 30px;
+    border-radius: 8px;
+    background-color: #F7F7F7;
+}
+
+header .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+header .logo-container .image-container img {
+    width: 50px;
+}
+
+
+header .logo-container .brand-container p {
+    font-size: 30px;
+    font-weight: 600;
+    color: #F78104;
+}
+
+header .header-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+
+header .header-info ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 8px;
+}
+
+
+header .header-info ul li {
+    list-style: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.main-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.main-title h3 {
+    font-size: 40px;
+    color: #6d6a6a;
+}
+
+.details-container {
+    padding: 10px 30px;
+    margin: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 100px;
+}
+
+.details-container .detail-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+.details-container .detail-row .item {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+
+.details-container .detail-row .item p {
+    font-size: 25px;
+    font-weight: 600;
+    color: #6d6a6a;
+}
+
+
+.details-container .detail-row .item span {
+    font-size: 25px;
+    font-weight: 500;
+    color: #6d6a6a;
+}
+
+.table-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 30px;
+    margin: 10px 30px;
+}
+
+table {
+    width: 100%;
+}
+
+table thead {
+    background-color: #1B1D27;
+    height: 60px;
+}
+
+table thead tr th {
+    padding: 10px 20px;
+}
+
+table thead tr {
+    padding: 10px 0;
+    color: #ffff;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 18px;
+    text-align: center;
+}
+
+table tbody tr td {
+    border: 1px solid #6d6a6a;
+}
+
+table tbody tr {
+    text-align: center;
+    color: #000;
+    font-weight: 900;
+}
+
+
+table tbody tr td {
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #6d6a6a;
+    padding: 10px 20px;
+    color: #494949;
+    height: 100%;
+}
+
+
+table tbody tr td button {
+    border: none;
+    color: #ffff;
+    padding: 2px 5px;
+    height: 50px;
+    width: 60px;
+    border-radius: 8px;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+
+.computed-container {
+    padding: 10px 30px;
+    margin: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.computed-container .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+
+.computed-container .item p {
+    font-size: 30px;
+    font-weight: 600;
+    color: #6d6a6a;
+}
+
+
+.computed-container .item:last-child p {
+    font-weight: 900;
+}
+
+.computed-container .item span {
+    font-size: 30px;
+    font-weight: 600;
+    color: #6d6a6a;
+}
+
+.computed-container .item:last-child span {
+    font-weight: 900;
+}
+
+.badge-success {
+    background-color: #679038;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.badge-warning {
+    background-color: #D5AC0B;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.badge-danger {
+    background-color: #F78C47;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.badge-primary {
+    background-color: #3751AB;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.badge-dark {
+    background-color: #2B2B2B;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 10px;
+
+    font-size: 15px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px;
+    margin: 50px 30px;
+    border-radius: 8px;
+    background-color: #F7F7F7;
+}
+
+
+.footer p {
+    font-size: 20px;
+    color: #6d6a6a;
+    font-weight: 600;
+}

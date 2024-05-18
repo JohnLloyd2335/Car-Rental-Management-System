@@ -1,5 +1,4 @@
 <div>
-
     <div class="car-table-container">
         <div class="table-button-header-container">
 
@@ -18,24 +17,23 @@
             </div>
         </div>
         <div class="table-container">
-            <table id="pendingRentalTable" class="display" style="width:100%">
+            <table id="overdueRentalTable" class="display" style="width:100%">
                 <thead>
-                    <thead>
-                        <tr>
-                            <th>Customer Name</th>
-                            <th>Car Details</th>
-                            <th>Reservation Date</th>
-                            <th>Start Date</th>
-                            <th>End date</th>
-                            <th>Date Approved</th>
-                            <th>Rental Days</th>
-                            <th>Amount</th>
-                            <th>Overdue Days</th>
-                            <th>Penalty</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Car Details</th>
+                        <th>Reservation Date</th>
+                        <th>Start Date</th>
+                        <th>End date</th>
+                        <th>Rental Days</th>
+                        <th>Date Approved</th>
+                        <th>Amount</th>
+                        <th>Overdue Days</th>
+                        <th>Penalty</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
                 <tbody>
                     @forelse ($rentals as $rental)
                         <tr wire:key="{{ $rental->id }}">
@@ -70,13 +68,8 @@
                             <td>
                                 <div class="td-action">
 
-                                    <a href="{{ route('rental.active.show', $rental) }}" class="bg-success"><i
-                                            class="fas fa-eye"></i></a>
-                                    <button class="bg-primary"
-                                        onclick="markAsCompleted({{ $rental->id }} , {{ $over_due_days * $rental->car->price_per_day }})"><i
-                                            class="fas fa-check"></i></button>
-                                    <button class="bg-dark" wire:click="cancelRental({{ $rental->id }})"><i
-                                            class="fas fa-file-pdf"></i></button>
+                                    <a href="{{ route('utility.track-overdue.rental.show', $rental->id) }}"
+                                        class="bg-success"><i class="fas fa-eye"></i></a>
                                 </div>
                             </td>
                         </tr>

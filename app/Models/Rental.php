@@ -49,7 +49,7 @@ class Rental extends Model
     {
         return Attribute::make(
             get: function ($value) {
-                return date('M d, Y h:i A', strtotime($value));
+                return date('M d, Y', strtotime($value));
             }
         );
     }
@@ -58,7 +58,7 @@ class Rental extends Model
     {
         return Attribute::make(
             get: function ($value) {
-                return date('M d, Y h:i A', strtotime($value));
+                return date('M d, Y', strtotime($value));
             }
         );
     }
@@ -73,6 +73,15 @@ class Rental extends Model
     }
 
     public function dateCancelled(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return date('M d, Y h:i A', strtotime($value));
+            }
+        );
+    }
+
+    public function dateApproved(): Attribute
     {
         return Attribute::make(
             get: function ($value) {

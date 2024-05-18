@@ -127,6 +127,66 @@ function markAsOverdue(rental_ids) {
 
 }
 
+function markAsCompleted(id, pentaltyAmount) {
+
+    pentaltyAmount = pentaltyAmount ?? 0;
+    Swal.fire({
+        title: "Are you sure you want to mark as completed?",
+        text: "",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        html: `<div style='display:flex;flex-direction:column;align-items-center;justify-content-center'><label style='font-size: 25px; font-weight: 600;'>Edit Penalty</label><input type='text' id='penaltyAmount' value='${pentaltyAmount}' style='font-size : 30px; padding: 5px 10px;'/></div>`
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let penaltyAmountTotal = $("#penaltyAmount").val();
+            let url = `active/${id}/mark-as-completed`;
+            $.ajax({
+                url: url,
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr("content")
+                },
+                data: {
+                    id: id,
+                    penaltyAmount: penaltyAmountTotal
+                },
+                success: function (response) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: response.message,
+                        icon: 'success'
+                    });
+
+                    window.location.reload();
+                },
+                error: function (error) {
+                    console.log(error)
+
+                    let message = error.responseJSON.message;
+                    let statusCode = error.status;
+
+                    if (statusCode == 422) {
+                        Swal.fire({
+                            title: 'Validation Error',
+                            text: message,
+                            icon: 'error'
+                        });
+                    }
+                    else if (statusCode == 500) {
+                        Swal.fire({
+                            title: 'Server Error',
+                            text: message,
+                            icon: 'error'
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+}
+
 
 
 
