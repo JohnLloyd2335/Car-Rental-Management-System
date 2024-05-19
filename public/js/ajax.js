@@ -92,3 +92,114 @@ function handleLogin() {
         }
     });
 }
+
+function cancelRental(id) {
+    Swal.fire({
+        title: 'Are you sure you want to cancel Rental?',
+        text: '',
+        icon: 'warning',
+        confirmButtonText: 'Yes',
+        showCancelButton: true,
+        html: "<div><textarea style='margin: 5px 10px; resize:none;width : 400px;height: 100px;padding: 2px 5px; font-size:22px;' placeholder='Reason' id='reason'></textarea></div>"
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            let url = `rental/pending/${id}/cancel`;
+            let token = $("meta[name='csrf-token']").attr('content');
+            let reason = $("#reason").val();
+
+            $.ajax({
+                url: url,
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': token
+                },
+                data: {
+                    reason: reason
+                },
+                success: function (response) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: response.message,
+                        icon: 'success'
+                    });
+
+                    window.location.reload();
+                },
+                error: function (error) {
+                    Swal.fire({
+                        title: "Server Error",
+                        text: error.responseJSON.message,
+                        icon: "error"
+                    });
+                }
+            });
+
+        }
+    });
+}
+
+function addRentalReview(rental_id) {
+
+    let rating = $("#review-count-field").val();
+    let comment = $("#comment").val();
+
+    if (rating == 0 || rating == "0") {
+        Swal.fire({
+            title: 'Warning',
+            text: 'Rating is required',
+            icon: 'warning'
+        });
+        return;
+    }
+
+    let url = 'store-review';
+    let token = $("meta[name='csrf-token']").attr("content");
+
+    $.ajax({
+        url: url,
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': token
+        },
+        data: {
+            rental_id: rental_id,
+            stars: rating,
+            comment: comment
+        },
+        success: function (response) {
+
+            Swal.fire({
+                title: 'Success',
+                text: response.message,
+                icon: 'success'
+            });
+
+            window.location.href = "";
+        },
+        error: function (error) {
+            let errorMessage = error.responseJSON.message;
+            let statusCode = error.status;
+
+
+            if (statusCode == 422) {
+                Swal.fire({
+                    title: 'Server Error',
+                    text: errorMessage,
+                    icon: 'error'
+                });
+            }
+            else if (statusCode == 500) {
+                Swal.fire({
+                    title: 'Server Error',
+                    text: errorMessage,
+                    icon: 'error'
+                });
+            }
+
+
+
+        }
+    })
+
+}

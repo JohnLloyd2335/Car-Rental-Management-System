@@ -37,7 +37,7 @@ class CarsComponent extends Component
     public function render()
     {
 
-        $cars = Car::query();
+        $cars = Car::where('is_available', true);
 
         if (!empty($this->keywords)) {
             $cars = $cars->whereHas('category', function ($query) {

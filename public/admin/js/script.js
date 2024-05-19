@@ -140,98 +140,7 @@ $(document).ready(function () {
 
 
 
-function approveCarRental(id) {
 
-    Swal.fire({
-        title: "Warning!",
-        text: "Are you sure you want to Approve?",
-        icon: "info",
-        showCancelButton: true,
-        confirmButtonText: "Yes"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            console.log("confirmed");
-        }
-        else {
-            console.log("cancelled");
-        }
-    });
-
-}
-
-function cancelCarRental(id) {
-    Swal.fire({
-        title: "Are you sure you want to cancel?",
-        text: "Are you sure you want to Cancel?",
-        icon: "info",
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-        html: "<textarea id='cancel-reason' placeholder='Reason' style='width: 100%; height: 100px;resize:none;padding-left: 10px; padding-top:5px;font-size:18px; margin-top: 30px'></textarea>"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            let cancelReason = $("#cancel-reason").val();
-            console.log(cancelReason);
-            console.log("confirmed");
-        }
-        else {
-            console.log("cancelled");
-        }
-    });
-}
-
-function markAsCompletedRental(id) {
-    Swal.fire({
-        title: "Warning",
-        text: "Are you sure you want to mark as completed?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes"
-    }).then((result) => {
-
-        if (result.isConfirmed) {
-            console.log("completed")
-        }
-        else {
-            console.log("cancelled")
-        }
-
-    });
-}
-
-function editPenalty(id) {
-    Swal.fire({
-        title: "Edit Penalty",
-        text: "",
-        icon: "warning",
-        html: "<input type='number' placeholder='Penalty' style='width: 100%; height: 40px;resize:none;padding-left: 10px; padding-top:5px;font-size:18px; margin-top: 30px'/>",
-        confirmButtonText: "Save",
-        showCancelButton: true,
-    }).then((result) => {
-        if (result.isConfirmed) {
-            console.log("confirmed")
-        }
-        else {
-            console.log("cancelled")
-        }
-    });
-}
-
-function markAsPaid(id) {
-    Swal.fire({
-        title: "Warning",
-        text: "Are you sure you want to mark as paid?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            console.log("confirmed");
-        }
-        else {
-            console.log("cancelled");
-        }
-    });
-}
 
 function clearRevenueData() {
 
@@ -270,20 +179,4 @@ function clearRentalReportData() {
     //remove data table data
 }
 
-function blockUser(id) {
-    Swal.fire({
-        title: "Warning",
-        text: "Are you sure you want to block user?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            console.log("confirmed");
-        }
-        else {
-            console.log("cancelled");
-        }
-    });
-}
 

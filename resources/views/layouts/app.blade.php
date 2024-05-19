@@ -37,6 +37,7 @@
                 <li class="nav-link"><a href="{{ route('login') }}">Login/Register</a></li>
             @endguest
             @auth
+                <li class="nav-link"><a href="{{ route('customer.rental.index') }}">Rentals</a></li>
                 <li class="nav-link" id="dropdown-open">
                     <a href="#">{{ auth()->user()->name }}</a>
                     <i class="fa-solid fa-caret-down profile-dropdown-icon"></i>
@@ -110,6 +111,8 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    {{-- 
+    <script src="{{ asset('js/jquery.js') }}"></script> --}}
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.js') }}"></script>
     <script src="{{ asset('js/ajax.js') }}"></script>

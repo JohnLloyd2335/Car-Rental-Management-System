@@ -172,7 +172,7 @@ class RentalController extends Controller
         try {
             DB::beginTransaction();
 
-            $rental = Rental::findOrFail($id);
+            $rental = Rental::with('car')->findOrFail($id);
 
             $penalty = $request->penaltyAmount == 0 ? null : $request->penaltyAmount;
 
@@ -195,6 +195,10 @@ class RentalController extends Controller
                 'penalties' => $penalty,
                 'date_returned' => now(),
                 'date_completed' => now()
+            ]);
+
+            $rental->car->update([
+                'is_available' => true
             ]);
 
             DB::commit();

@@ -338,4 +338,16 @@ function rentCar(carId) {
 
 }
 
+let reviewCount = $("#review-count");
+let reviewCountField = $("#review-count-field");
+$(".star").each(function () {
+  $(this).click(function () {
+    let rating = $(this).data("rating");
+    $(".star").removeClass("active-star");
+    $(this).prevAll(".star").addBack().addClass("active-star");
+    rating == 0 ? reviewCount.text(rating + " star") : reviewCount.text(rating + " stars");
+    reviewCountField.val(rating);
+  });
+});
+
 

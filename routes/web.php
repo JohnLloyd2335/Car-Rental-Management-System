@@ -52,7 +52,23 @@ Route::group(['middleware' => 'auth'], function () {
         //Rent Car
         Route::get('cars/{car}/rent', [CustomerRentalController::class, 'store'])->name('car.rent');
 
+        //Rentals Route
+        Route::get('rentals', [CustomerRentalController::class, 'index'])->name('customer.rental.index');
+        //Cancel Rental 
+        Route::post('rental/pending/{rental}/cancel', [CustomerRentalController::class, 'cancelRental'])->name('customer.rental.pending.cancel');
 
+        //Show Routes for Customer Rentals 
+        Route::get('rental/pending/{rental}/view', [CustomerRentalController::class, 'pendingShow'])->name('customer.rental.pending.show');
+        Route::get('rental/cancelled/{rental}/view', [CustomerRentalController::class, 'cancelledShow'])->name('customer.rental.cancelled.show');
+        Route::get('rental/active/{rental}/view', [CustomerRentalController::class, 'activeShow'])->name('customer.rental.active.show');
+        Route::get('rental/overdue/{rental}/view', [CustomerRentalController::class, 'overdueShow'])->name('customer.rental.overdue.show');
+        Route::get('rental/completed/{rental}/view', [CustomerRentalController::class, 'completedShow'])->name('customer.rental.completed.show');
+
+        //Add Review Route
+        Route::get('rental/{rental}/add-review', [CustomerRentalController::class, 'addReview'])->name('customer.rental.addReview');
+
+        //Store Review
+        Route::post('rental/{id}/store-review', [CustomerRentalController::class, 'storeReview'])->name('customer.rental.storeReview');
     });
 
     //Admin Route
