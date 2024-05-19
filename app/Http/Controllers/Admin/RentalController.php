@@ -185,10 +185,12 @@ class RentalController extends Controller
                 $amount = $rental->car->price_per_day;
             }
 
+            $amount_paid = $penalty + $amount;
+
             $rental->update([
                 'status' => 'Completed',
                 'is_paid' => true,
-                'amount_paid' => $amount,
+                'amount_paid' => $amount_paid,
                 'date_paid' => now(),
                 'penalties' => $penalty,
                 'date_returned' => now(),
@@ -222,6 +224,43 @@ class RentalController extends Controller
         return view('admin.rental.overdue');
     }
 
+    public function overdueShow(Rental $rental)
+    {
+        $rental->load(['user']);
+        $rental->car->load(['category', 'brand', 'car_accessories']);
+        $car_images = json_decode($rental->car->images);
+        $car_accessories = $rental->car->car_accessories;
+        $start_date = Carbon::parse($rental->start_date);
+        $end_date = Carbon::parse($rental->end_date);
+        $days = $start_date->diffInDays($end_date) == 0 ? '1' : $start_date->diffInDays($end_date);
+        $amount = "₱" . number_format($rental->car->price_per_day * $days);
+        $over_due_days = $end_date->diffInDays(now()) == 0 ? '1' : $end_date->diffInDays(now());
+        $penalty_amount = '₱' . number_format($over_due_days * $rental->car->price_per_day, 2);
 
+        return view("admin.rental.view-overdue-rental", compact("rental", "car_images", "car_accessories", "days", "amount", "over_due_days", "penalty_amount"));
+
+    }
+
+    public function completedIndex()
+    {
+        return view('admin.rental.completed');
+    }
+
+    public function completedShow(Rental $rental)
+    {
+        $rental->load(['user']);
+        $rental->car->load(['category', 'brand', 'car_accessories']);
+        $car_images = json_decode($rental->car->images);
+        $car_accessories = $rental->car->car_accessories;
+        $start_date = Carbon::parse($rental->start_date);
+        $end_date = Carbon::parse($rental->end_date);
+        $days = $start_date->diffInDays($end_date) == 0 ? '1' : $start_date->diffInDays($end_date);
+        $amount = "₱" . number_format($rental->car->price_per_day * $days);
+        $over_due_days = $end_date->diffInDays(now()) == 0 ? '1' : $end_date->diffInDays($rental->date_completed);
+        $penalty_amount = '₱' . number_format($rental->penalties, 2);
+
+        return view("admin.rental.view-completed-rental", compact("rental", "car_images", "car_accessories", "days", "amount", "over_due_days", "penalty_amount"));
+
+    }
 
 }

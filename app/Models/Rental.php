@@ -89,4 +89,31 @@ class Rental extends Model
             }
         );
     }
+
+    public function dateCompleted(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return date('M d, Y h:i A', strtotime($value));
+            }
+        );
+    }
+
+    public function datePaid(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return date('M d, Y h:i A', strtotime($value));
+            }
+        );
+    }
+
+    public function dateReturned(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return date('M d, Y h:i A', strtotime($value));
+            }
+        );
+    }
 }

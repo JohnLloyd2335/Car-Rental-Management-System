@@ -6,9 +6,8 @@ use App\Models\Rental;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class OverdueRentalTableComponent extends Component
+class CompletedRentalTableComponent extends Component
 {
-
     use WithPagination;
 
     public string $orderBy;
@@ -23,7 +22,7 @@ class OverdueRentalTableComponent extends Component
     public function render()
     {
 
-        $rentals = Rental::with('user', 'car')->where('status', 'Overdue');
+        $rentals = Rental::with('user', 'car')->where('status', 'Completed');
 
         if (!empty($this->keywords)) {
             $rentals = $rentals->whereHas('car', function ($query) {
@@ -33,11 +32,10 @@ class OverdueRentalTableComponent extends Component
             });
         }
 
-        $rentals = $rentals->orderBy('id', $this->orderBy);
+        $rentals = $rentals->orderBy('date_completed', $this->orderBy);
 
         $rentals = $rentals->paginate(1);
 
-
-        return view('livewire.admin.overdue-rental-table-component', compact('rentals'));
+        return view('livewire.admin.completed-rental-table-component', compact('rentals'));
     }
 }

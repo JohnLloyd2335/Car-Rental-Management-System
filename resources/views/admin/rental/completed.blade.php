@@ -5,12 +5,12 @@
         <div class="car-container">
 
             <div class="page-title-container">
-                <h3>Overdue Rental</h3>
+                <h3>Completed Rental</h3>
             </div>
 
             @include('admin.includes.session-messages')
 
-            @livewire('admin.overdue-rental-table-component')
+            @livewire('admin.completed-rental-table-component')
 
         </div>
     </div>

@@ -43,6 +43,12 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         p{
             margin-bottom: 0;
         }
+        .small-text{
+            font-size: 12px;
+            text-transform: lowercase;
+            font-weight: 300;
+            color: #F88D1D;
+        }
     </style>
         
     @if ($paginator->hasPages())

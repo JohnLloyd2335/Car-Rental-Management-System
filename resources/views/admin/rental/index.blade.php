@@ -37,7 +37,7 @@
                     </div>
                 </a>
 
-                <a class="module bg-warning" href="#">
+                <a class="module bg-warning" href="{{ route('rental.overdue.index') }}">
                     <div class="module-icon-container">
                         <i class="fas fa-calendar-minus"></i>
                     </div>
@@ -46,7 +46,7 @@
                     </div>
                 </a>
 
-                <a class="module bg-success" href="#">
+                <a class="module bg-success" href="{{ route('rental.completed.index') }}">
                     <div class="module-icon-container">
                         <i class="fas fa-calendar-check"></i>
                     </div>

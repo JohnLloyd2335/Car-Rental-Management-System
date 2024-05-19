@@ -25,6 +25,7 @@ table tbody tr {
     text-align: center;
     color: #000;
     font-weight: 900;
+    width: 100%;
 }
 
 
@@ -34,7 +35,6 @@ table tbody tr td {
     border-bottom: 1px solid #6d6a6a;
     padding: 10px 20px;
     color: #494949;
-    height: 100%;
 }
 
 

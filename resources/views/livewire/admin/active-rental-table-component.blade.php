@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="table-container">
-            <table id="pendingRentalTable" class="display" style="width:100%">
+            <table id="activeRentalTable" class="display" style="width:100%">
                 <thead>
                     <thead>
                         <tr>
@@ -75,8 +75,7 @@
                                     <button class="bg-primary"
                                         onclick="markAsCompleted({{ $rental->id }} , {{ $over_due_days * $rental->car->price_per_day }})"><i
                                             class="fas fa-check"></i></button>
-                                    <button class="bg-dark" wire:click="cancelRental({{ $rental->id }})"><i
-                                            class="fas fa-file-pdf"></i></button>
+                                    <button class="bg-dark"><i class="fas fa-file-pdf"></i></button>
                                 </div>
                             </td>
                         </tr>

@@ -111,7 +111,16 @@ Route::group(['middleware' => 'auth'], function () {
         //Active Rental Route
         Route::get('rental/active', [RentalController::class, 'activeIndex'])->name('rental.active.index');
         Route::get('rental/active/{rental}/show', [RentalController::class, 'activeShow'])->name('rental.active.show');
-        Route::post('rental/active/{id}/mark-as-completed', [RentalController::class, 'markAsCompleted'])->name('rental.active.markAsCompleted');
+        Route::post('rental/{id}/mark-as-completed', [RentalController::class, 'markAsCompleted'])->name('rental.active.markAsCompleted');
+
+
+        //Overdue Route
+        Route::get('rental/overdue', [RentalController::class, 'overdueIndex'])->name('rental.overdue.index');
+        Route::get('rental/overdue/{rental}/show', [RentalController::class, 'overdueShow'])->name('rental.overdue.show');
+
+        //Completed Route
+        Route::get('rental/completed', [RentalController::class, 'completedIndex'])->name('rental.completed.index');
+        Route::get('rental/completed/{rental}/show', [RentalController::class, 'completedShow'])->name('rental.completed.show');
 
         //Utility Route
         Route::get('utility', [UtilityController::class, 'index'])->name('utility.index');
@@ -121,6 +130,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-//Bugs - CSS not working
+//Bug - CSS not working
 Route::get('pdf/{rental}/compute-partial', [PDFController::class, 'computePartial'])->name('pdf.compute-partial');
 

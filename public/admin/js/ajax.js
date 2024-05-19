@@ -140,7 +140,7 @@ function markAsCompleted(id, pentaltyAmount) {
     }).then((result) => {
         if (result.isConfirmed) {
             let penaltyAmountTotal = $("#penaltyAmount").val();
-            let url = `active/${id}/mark-as-completed`;
+            let url = `${id}/mark-as-completed`;
             $.ajax({
                 url: url,
                 method: "POST",
