@@ -28,10 +28,10 @@
                 <a href="{{ route('cars') }}">Cars</a>
             </li>
             <li class="nav-link">
-                <a href="about.html">About</a>
+                <a href="{{ route('aboutUs') }}">About Us</a>
             </li>
             <li class="nav-link">
-                <a href="contact-us.html">Contact Us</a>
+                <a href="{{ route('contactUs') }}">Contact Us</a>
             </li>
             @guest
                 <li class="nav-link"><a href="{{ route('login') }}">Login/Register</a></li>

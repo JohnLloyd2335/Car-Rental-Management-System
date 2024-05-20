@@ -2741,7 +2741,7 @@ main .rental-info-container .rental-info .info p {
 /*Rental*/
 
 /* Report */
-.main-content .reports-container {
+main .main-content .reports-container {
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -2749,7 +2749,7 @@ main .rental-info-container .rental-info .info p {
     width: 100%;
 }
 
-.main-content .reports-container .report-list-container {
+main .main-content .reports-container .report-list-container {
     margin-top: 100px;
     display: flex;
     flex-direction: column;
@@ -2760,7 +2760,7 @@ main .rental-info-container .rental-info .info p {
 }
 
 
-.main-content .reports-container .report-list-container .report-item {
+main .main-content .reports-container .report-list-container .report-item {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -2775,14 +2775,14 @@ main .rental-info-container .rental-info .info p {
 }
 
 
-.main-content .reports-container .report-list-container .report-item .report-icon-container i {
+main .main-content .reports-container .report-list-container .report-item .report-icon-container i {
     font-size: 40px;
     color: #6d6a6a;
     transition: 0.3s ease-out;
 }
 
 
-.main-content .reports-container .report-list-container .report-item .report-title-container p {
+main .main-content .reports-container .report-list-container .report-item .report-title-container p {
     font-size: 30px;
     font-weight: 600;
     color: #6d6a6a;
@@ -2790,43 +2790,43 @@ main .rental-info-container .rental-info .info p {
 }
 
 
-.main-content .reports-container .report-list-container .report-item:hover .report-title-container p {
+main .main-content .reports-container .report-list-container .report-item:hover .report-title-container p {
     color: #F78104;
 }
 
-.main-content .reports-container .report-list-container .report-item:hover .report-icon-container i {
+main .main-content .reports-container .report-list-container .report-item:hover .report-icon-container i {
     color: #F78104;
 }
 
 @media only screen and (max-width : 600px) {
-    .main-content .reports-container .report-list-container .report-item .report-icon-container i {
+    main .main-content .reports-container .report-list-container .report-item .report-icon-container i {
         font-size: 30px;
     }
 
 
-    .main-content .reports-container .report-list-container .report-item .report-title-container {
+    main .main-content .reports-container .report-list-container .report-item .report-title-container {
         text-align: center;
     }
 
-    .main-content .reports-container .report-list-container .report-item .report-title-container p {
+    main .main-content .reports-container .report-list-container .report-item .report-title-container p {
         font-size: 20px;
     }
 }
 
 @media only screen and (min-width : 667px) and (max-width : 992px) {
-    .main-content .reports-container .report-list-container .report-item .report-icon-container i {
+    main .main-content .reports-container .report-list-container .report-item .report-icon-container i {
         font-size: 40px;
     }
 
-    .main-content .reports-container .report-list-container .report-item .report-title-container {
+    main .main-content .reports-container .report-list-container .report-item .report-title-container {
         width: 100%;
     }
 
-    .main-content .reports-container .report-list-container .report-item .report-title-container {
+    main .main-content .reports-container .report-list-container .report-item .report-title-container {
         text-align: start;
     }
 
-    .main-content .reports-container .report-list-container .report-item .report-title-container p {
+    main .main-content .reports-container .report-list-container .report-item .report-title-container p {
         font-size: 26px;
     }
 }

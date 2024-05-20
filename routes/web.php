@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PDFController;
 use App\Http\Controllers\Admin\RentalController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UtilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -28,6 +29,10 @@ use App\Http\Controllers\CarController as CustomerCarController;
 //Index Route
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
+//Contact Us and About Us Route
+Route::view('about-us', 'about-us')->name('aboutUs');
+Route::view('contact-us', 'contact-us')->name('contactUs');
+
 //Brawse Car
 Route::get('/cars', [CustomerCarController::class, 'index'])->name('cars');
 
@@ -39,7 +44,6 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('handleRegistration');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
 
 //Authenticated Routes
 Route::group(['middleware' => 'auth'], function () {
@@ -143,6 +147,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('utility/track-overdue', [UtilityController::class, 'trackOverdueIndex'])->name('utility.track-overdue');
         Route::get('utility/track-overdue/{id}/show', [UtilityController::class, 'overdueShow'])->name('utility.track-overdue.rental.show');
         Route::post('utility/track-overdue/mark-as-overdue', [UtilityController::class, 'markAsOverdue'])->name('utility.track-overdue.rental.markAsOverdue');
+
+        //Report Route
+        Route::get('report', [ReportController::class, 'index'])->name('report.index');
+        Route::get('report/revenue', [ReportController::class, 'revenueReportIndex'])->name('report.revenue');
     });
 });
 

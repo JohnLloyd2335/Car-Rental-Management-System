@@ -46,7 +46,7 @@
                         class="fas fa-car"></i><span class="text-link">Cars</span></a>
                 <a class="link " href="{{ route('rental.index') }}"><i class="fas fa-calendar"></i><span
                         class="text-link">Rentals</span></a>
-                <a class="link" href="#"><i class="fas fa-chart-simple"></i><span
+                <a class="link" href="{{ route('report.index') }}"><i class="fas fa-chart-simple"></i><span
                         class="text-link">Reports</span></a>
                 <a class="link {{ Route::is('utility.index') ? 'active-link' : '' }}"
                     href="{{ route('utility.index') }}"><i class="fas fa-wrench"></i><span
