@@ -89,7 +89,6 @@ nav ul li:last-child {
     top: 50px;
     right: 5px;
     background-color: rgb(252, 252, 252);
-    max-width: 200px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s;
@@ -139,12 +138,18 @@ nav #dropdown-open {
     padding: 10px;
 }
 
+
+.profile-dropdown-menu .dropdown-items .dropdown-item {
+    cursor: pointer;
+}
+
 .profile-dropdown-menu .dropdown-items .dropdown-item a {
     text-decoration: none;
     font-size: 18px;
     color: #000000;
     font-weight: 400;
     transition: 0.3s ease-out;
+    width: 100%;
 
 }
 

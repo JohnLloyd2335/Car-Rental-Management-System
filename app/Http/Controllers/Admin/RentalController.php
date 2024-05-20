@@ -252,7 +252,7 @@ class RentalController extends Controller
 
     public function completedShow(Rental $rental)
     {
-        $rental->load(['user']);
+        $rental->load(['user', 'review']);
         $rental->car->load(['category', 'brand', 'car_accessories']);
         $car_images = json_decode($rental->car->images);
         $car_accessories = $rental->car->car_accessories;

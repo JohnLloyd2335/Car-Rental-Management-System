@@ -25,7 +25,7 @@ body {
     border: 1px solid #0000;
     background-color: #1B1D27;
     max-width: 250px;
-    height: 1000px;
+    height: 1300px;
     padding: 10px 0;
 }
 
@@ -2359,13 +2359,13 @@ body {
 }
 
 .view-car-container .car-review-container .reviews .review-item .review-content .review-stars .car-review-stars i {
-    font-size: 18px;
-    color: rgb(201, 187, 0);
+    font-size: 30px;
+    color: #6a6a6a;
 }
 
 .view-car-container .car-review-container .reviews .review-item .review-content .review-stars .car-review-rating p {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 25px;
+    font-weight: 900;
     color: #2b2828;
 }
 
@@ -3538,5 +3538,16 @@ a {
     }
 
 }
+
+
+.active-stars {
+    color: rgb(201, 187, 0) !important;
+}
+
+.uncolored-stars {
+    color: #6d6a6a;
+}
+
+
 
 /* Default Style for all pages */

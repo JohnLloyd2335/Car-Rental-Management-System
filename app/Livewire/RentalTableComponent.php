@@ -26,7 +26,7 @@ class RentalTableComponent extends Component
     public function render()
     {
 
-        $rentals = Rental::with('user', 'car', 'reviews')->where('user_id', auth()->user()->id);
+        $rentals = Rental::with('user', 'car', 'review')->where('user_id', auth()->user()->id);
 
         if (!empty($this->keywords)) {
             $rentals = $rentals->whereHas('car', function ($query) {

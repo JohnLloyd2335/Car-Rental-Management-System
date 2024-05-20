@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $revenue = Rental::sum('amount_paid');
         $penalty_revenue = Rental::sum('penalties');
         $total_revenue = number_format($revenue + $penalty_revenue, 2);
-        $car_ratings = Review::avg('stars') ?? 0;
+        $car_ratings = number_format(Review::avg('stars') ?? 0, 1);
 
         return view("admin.dashboard", compact('available_cars_count', 'active_rentals_count', 'pending_rentals_count', 'total_revenue', 'car_ratings'));
     }

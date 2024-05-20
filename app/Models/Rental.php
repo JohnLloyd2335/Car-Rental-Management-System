@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Rental extends Model
 {
@@ -40,9 +41,9 @@ class Rental extends Model
         return $this->belongsTo(Car::class);
     }
 
-    public function reviews(): HasMany
+    public function review(): HasOne
     {
-        return $this->hasMany(Review::class);
+        return $this->hasOne(Review::class);
     }
 
     public function startDate(): Attribute

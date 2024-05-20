@@ -85,71 +85,118 @@
             </div>
         </div>
 
-    </div>
 
-    <div class="view-car-page-title-container">
-        <h4 class="align-self-center">Rental Details</h4>
-    </div>
+        <div class="view-car-page-title-container">
+            <h4 class="align-self-center">Rental Details</h4>
+        </div>
 
-    <div class="rental-info-container">
-        <div class="rental-info">
-            <div class="info">
-                <span>Customer Name:</span>
-                <p>{{ $rental->user->name }}</p>
+        <div class="rental-info-container">
+            <div class="rental-info">
+                <div class="info">
+                    <span>Customer Name:</span>
+                    <p>{{ $rental->user->name }}</p>
+                </div>
+                <div class="info">
+                    <span>Reservation Date:</span>
+                    <p>{{ $rental->created_at }}</p>
+                </div>
+                <div class="info">
+                    <span>Rental Days:</span>
+                    <p>{{ $days }}</p>
+                </div>
+                <div class="info">
+                    <span>Date Paid:</span>
+                    <p>{{ $rental->date_paid }}</p>
+                </div>
             </div>
-            <div class="info">
-                <span>Reservation Date:</span>
-                <p>{{ $rental->created_at }}</p>
+            <div class="rental-info">
+                <div class="info">
+                    <span>Start Date:</span>
+                    <p>{{ $rental->start_date }}</p>
+                </div>
+                <div class="info">
+                    <span>End Date:</span>
+                    <p>{{ $rental->end_date }}</p>
+                </div>
+                <div class="info">
+                    <span>Over Due Days:</span>
+                    <p>{{ $over_due_days }}</p>
+                </div>
+                <div class="info">
+                    <span>Date Completed:</span>
+                    <p>{{ $rental->date_completed }}</p>
+                </div>
+
             </div>
-            <div class="info">
-                <span>Rental Days:</span>
-                <p>{{ $days }}</p>
-            </div>
-            <div class="info">
-                <span>Date Paid:</span>
-                <p>{{ $rental->date_paid }}</p>
+            <div class="rental-info">
+                <div class="info">
+                    <span>Amount:</span>
+                    <p>{{ $amount }}</p>
+                </div>
+                <div class="info">
+                    <span>Penalty Amount:</span>
+                    <p>{{ $penalty_amount }}</p>
+                </div>
+                <div class="info">
+                    <span>Amount Paid:</span>
+                    <p>{{ '₱' . number_format($rental->amount_paid, 2) }}</p>
+                </div>
+                <div class="info">
+                    <span>Date Returned:</span>
+                    <p>{{ $rental->date_returned }}</p>
+                </div>
+                <div class="info">
+                    <span>Status:</span>
+                    <p class="badge-primary">{{ $rental->status }}</p>
+                </div>
             </div>
         </div>
-        <div class="rental-info">
-            <div class="info">
-                <span>Start Date:</span>
-                <p>{{ $rental->start_date }}</p>
-            </div>
-            <div class="info">
-                <span>End Date:</span>
-                <p>{{ $rental->end_date }}</p>
-            </div>
-            <div class="info">
-                <span>Over Due Days:</span>
-                <p>{{ $over_due_days }}</p>
-            </div>
-            <div class="info">
-                <span>Date Completed:</span>
-                <p>{{ $rental->date_completed }}</p>
-            </div>
 
+        <div class="view-car-page-title-container">
+            <h4 class="align-self-center">Rental Review</h4>
         </div>
-        <div class="rental-info">
-            <div class="info">
-                <span>Amount:</span>
-                <p>{{ $amount }}</p>
+
+        @if ($rental?->review?->count() > 0)
+            <div class="car-review-container">
+                <div class="reviews">
+
+                    <div class="review-item">
+                        <div class="review-user-image">
+                            <img src="https://placehold.co/100" alt="User Iamge">
+                        </div>
+                        <div class="review-content">
+                            <h4>{{ $rental->user->name }}</h4>
+                            <p id="review-date">{{ $rental->review->created_at }}</p>
+                            <p id="review-comment">{{ $rental->review->comment }}</p>
+                            <div class="review-stars">
+                                @php
+                                    $active_stars = $rental->review->stars;
+                                    $unactive_stars = 5 - $active_stars;
+                                @endphp
+                                <div class="car-review-stars">
+                                    @for ($i = 1; $i <= $active_stars; $i++)
+                                        <i class="fa-solid fa-star active-stars"></i>
+                                    @endfor
+
+                                    @for ($i = 1; $i <= $unactive_stars; $i++)
+                                        <i class="fa-solid fa-star uncolored-stars"></i>
+                                    @endfor
+                                </div>
+                                <div class="car-review-rating">
+                                    <p>{{ $rental->review->stars }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="info">
-                <span>Penalty Amount:</span>
-                <p>{{ $penalty_amount }}</p>
+        @else
+            <div class="view-car-page-title-container">
+                <h6 class="align-self-center">No Review Found</h6>
             </div>
-            <div class="info">
-                <span>Amount Paid:</span>
-                <p>{{ '₱' . number_format($rental->amount_paid, 2) }}</p>
-            </div>
-            <div class="info">
-                <span>Date Returned:</span>
-                <p>{{ $rental->date_returned }}</p>
-            </div>
-            <div class="info">
-                <span>Status:</span>
-                <p class="badge-primary">{{ $rental->status }}</p>
-            </div>
-        </div>
+        @endif
+
+
+
     </div>
 @endsection

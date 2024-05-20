@@ -10,6 +10,8 @@ use App\Models\Brand;
 use App\Models\Car;
 use App\Models\CarAccessory;
 use App\Models\Category;
+use App\Models\Rental;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -21,13 +23,6 @@ class CarController extends Controller
         $categories = Category::pluck("name", "id")->toArray();
         $brands = Brand::pluck("name", "id")->toArray();
 
-        if ($request->ajax()) {
-            $cars = Car::with(['category', 'brand'])->get();
-
-            return DataTables::of($cars)
-                ->addIndexColumn()
-                ->make(true);
-        }
 
         return view("admin.car.index", compact('categories', 'brands'));
     }
@@ -36,11 +31,22 @@ class CarController extends Controller
     {
         $car->load(['category', 'brand', 'car_accessories', 'rentals']);
         $car_images = json_decode($car->images);
-        $car_rental_count = $car->rentals->count();
+        $car_rental_count = $car->rentals->whereIn('status', ['Active', 'Completed'])->count();
 
         //To be added review count and car average rating
+        $review_count = Review::whereHas('rental', function ($query) use ($car) {
+            $query->where('status', 'Completed')->where('car_id', $car->id);
+        })->count();
 
-        return view("admin.car.show", compact("car", "car_images", "car_rental_count"));
+        $comment_count = Review::whereNotNull('comment')->whereHas('rental', function ($query) use ($car) {
+            $query->where('status', 'Completed')->where('car_id', $car->id);
+        })->count();
+
+        $car_avg_rating = Review::whereHas('rental', function ($query) use ($car) {
+            $query->where('car_id', $car->id);
+        })->avg('stars');
+
+        return view("admin.car.show", compact("car", "car_images", "car_rental_count", "review_count", "comment_count", "car_avg_rating"));
     }
 
     public function create()

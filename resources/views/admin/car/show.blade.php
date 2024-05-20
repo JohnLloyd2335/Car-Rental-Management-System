@@ -90,11 +90,11 @@
                 <div class="car-other-info-container">
                     <div>
                         <i class="fas fa-comment"></i>
-                        <p>0 reviews (with 0 comments)</p>
+                        <p>{{ $review_count }} reviews (with {{ $comment_count }} comments)</p>
                     </div>
                     <div>
                         <i class="fas fa-star"></i>
-                        <p>0 Average Rating</p>
+                        <p>{{ number_format($car_avg_rating, 1) }} Average Rating</p>
                     </div>
                     <div>
                         <i class="fas fa-wrench"></i>
@@ -104,100 +104,6 @@
             </div>
         </div>
 
-        <div class="car-review-container">
-            <h3 class="car-review-title">Car Reviews</h3>
-            <div class="reviews">
-                <div class="review-item">
-                    <div class="review-user-image">
-                        <img src="https://placehold.co/100" alt="User Iamge">
-                    </div>
-                    <div class="review-content">
-                        <h4>John Doe</h4>
-                        <p id="review-date">April 27, 2024</p>
-                        <p id="review-comment">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus
-                            molestiae explicabo
-                            aliquid excepturi ipsa sapiente aut sequi voluptate tempore voluptatum sit odio
-                            magni eos consectetur,
-                            autem quos inventore blanditiis beatae veniam! Laudantium excepturi quibusdam saepe
-                            sit, eos reprehenderit
-                            optio voluptas nihil enim, nesciunt cumque ex molestias ab repudiandae deserunt
-                            alias!</p>
-                        <div class="review-stars">
-                            <div class="car-review-stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half"></i>
-                            </div>
-                            <div class="car-review-rating">
-                                <p>4.5</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-item">
-                    <div class="review-user-image">
-                        <img src="https://placehold.co/100" alt="User Iamge">
-                    </div>
-                    <div class="review-content">
-                        <h4>John Doe</h4>
-                        <p id="review-date">April 27, 2024</p>
-                        <p id="review-comment">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus
-                            molestiae explicabo
-                            aliquid excepturi ipsa sapiente aut sequi voluptate tempore voluptatum sit odio
-                            magni eos consectetur,
-                            autem quos inventore blanditiis beatae veniam! Laudantium excepturi quibusdam saepe
-                            sit, eos reprehenderit
-                            optio voluptas nihil enim, nesciunt cumque ex molestias ab repudiandae deserunt
-                            alias!</p>
-                        <div class="review-stars">
-                            <div class="car-review-stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half"></i>
-                            </div>
-                            <div class="car-review-rating">
-                                <p>4.5</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-item">
-                    <div class="review-user-image">
-                        <img src="https://placehold.co/100" alt="User Iamge">
-                    </div>
-                    <div class="review-content">
-                        <h4>John Doe</h4>
-                        <p id="review-date">April 27, 2024</p>
-                        <p id="review-comment">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus
-                            molestiae explicabo
-                            aliquid excepturi ipsa sapiente aut sequi voluptate tempore voluptatum sit odio
-                            magni eos consectetur,
-                            autem quos inventore blanditiis beatae veniam! Laudantium excepturi quibusdam saepe
-                            sit, eos reprehenderit
-                            optio voluptas nihil enim, nesciunt cumque ex molestias ab repudiandae deserunt
-                            alias!</p>
-                        <div class="review-stars">
-                            <div class="car-review-stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half"></i>
-                            </div>
-                            <div class="car-review-rating">
-                                <p>4.5</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        @livewire('admin.car-review-component', ['car_id' => $car->id])
     </div>
 @endsection
