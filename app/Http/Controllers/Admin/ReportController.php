@@ -16,4 +16,9 @@ class ReportController extends Controller
     {
         return view('admin.report.revenue-report');
     }
+
+    public function rentalActReportIndex()
+    {
+        return view('admin.report.rental-activity');
+    }
 }

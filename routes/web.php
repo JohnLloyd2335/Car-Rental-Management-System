@@ -151,6 +151,7 @@ Route::group(['middleware' => 'auth'], function () {
         //Report Route
         Route::get('report', [ReportController::class, 'index'])->name('report.index');
         Route::get('report/revenue', [ReportController::class, 'revenueReportIndex'])->name('report.revenue');
+        Route::get('report/rental-activity', [ReportController::class, 'rentalActReportIndex'])->name('report.rental-activity');
     });
 });
 

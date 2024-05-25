@@ -18,7 +18,7 @@
                             <p>Revenue Report</p>
                         </div>
                     </a>
-                    <a class="report-item" href="#">
+                    <a class="report-item" href="{{ route('report.rental-activity') }}">
                         <div class="report-icon-container">
                             <i class="fa-solid fa-clock"></i>
                         </div>
