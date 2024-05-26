@@ -21,4 +21,9 @@ class ReportController extends Controller
     {
         return view('admin.report.rental-activity');
     }
+
+    public function customerFeedbackReportIndex()
+    {
+        return view('admin.report.customer-feedback');
+    }
 }

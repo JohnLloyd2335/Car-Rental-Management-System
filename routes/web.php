@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\UtilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RentalController as CustomerRentalController;
+use App\Models\Rental;
+use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController as CustomerCarController;
 
@@ -152,9 +154,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('report', [ReportController::class, 'index'])->name('report.index');
         Route::get('report/revenue', [ReportController::class, 'revenueReportIndex'])->name('report.revenue');
         Route::get('report/rental-activity', [ReportController::class, 'rentalActReportIndex'])->name('report.rental-activity');
+        Route::get('report/customer-feedback', [ReportController::class, 'customerFeedbackReportIndex'])->name('report.customer-feedback');
     });
 });
 
 //Bug - CSS not working
 Route::get('pdf/{rental}/compute-partial', [PDFController::class, 'computePartial'])->name('pdf.compute-partial');
 
+// Route::get('sample', function () {
+//     $review = Rental::where('id', 2)->withAvg('review', 'stars')->get();
+
+//     return response()->json($review);
+// });

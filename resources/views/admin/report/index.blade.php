@@ -26,7 +26,7 @@
                             <p>Rental Activity</p>
                         </div>
                     </a>
-                    <a class="report-item" href="#">
+                    <a class="report-item" href="{{ route('report.customer-feedback') }}">
                         <div class="report-icon-container">
                             <i class="fa-solid fa-thumbs-up"></i>
                         </div>

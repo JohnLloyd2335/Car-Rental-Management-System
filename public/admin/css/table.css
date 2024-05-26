@@ -94,3 +94,10 @@ table tbody tr td a:hover {
 table tbody tr td a i {
     font-size: 20px;
 }
+
+.small-text {
+    font-size: 12px;
+    text-transform: lowercase;
+    font-weight: 300;
+    color: #F88D1D;
+}

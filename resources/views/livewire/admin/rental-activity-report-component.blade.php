@@ -17,7 +17,7 @@
                         </select>
                     </div>
                 </div>
-                <table id="revenueReportTable" class="display" style="width:100%">
+                <table id="rentalActivityReportTable" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>Month & Year</th>
