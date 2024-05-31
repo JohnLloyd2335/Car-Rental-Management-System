@@ -34,7 +34,7 @@
                             <p>Customer Feedback</p>
                         </div>
                     </a>
-                    <a class="report-item" href="#">
+                    <a class="report-item" href="{{ route('report.inventory') }}">
                         <div class="report-icon-container">
                             <i class="fa-solid fa-boxes-stacked"></i>
                         </div>
@@ -42,7 +42,7 @@
                             <p>Inventory Report</p>
                         </div>
                     </a>
-                    <a class="report-item" href="#">
+                    <a class="report-item" href="{{ route('report.overdue') }}">
                         <div class="report-icon-container">
                             <i class="fa-solid fa-calendar-xmark"></i>
                         </div>

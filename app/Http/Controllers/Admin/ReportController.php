@@ -26,4 +26,14 @@ class ReportController extends Controller
     {
         return view('admin.report.customer-feedback');
     }
+
+    public function inventoryReportIndex()
+    {
+        return view('admin.report.inventory');
+    }
+
+    public function overdueReportIndex()
+    {
+        return view('admin.report.overdue-report');
+    }
 }
