@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CarAccessoryController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\PDFController;
 use App\Http\Controllers\Admin\RentalController;
 use App\Http\Controllers\Admin\ReportController;
@@ -157,6 +158,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('report/customer-feedback', [ReportController::class, 'customerFeedbackReportIndex'])->name('report.customer-feedback');
         Route::get('report/inventory', [ReportController::class, 'inventoryReportIndex'])->name('report.inventory');
         Route::get('report/overdue', [ReportController::class, 'overdueReportIndex'])->name('report.overdue');
+
+        //Manage User
+        Route::get('manage_user', [ManageUserController::class, 'index'])->name('manage_user.index');
+        Route::get('manage_user/{user}/edit', [ManageUserController::class, 'edit'])->name('manage_user.edit');
+        Route::put('manage_user/{user}/update', [ManageUserController::class, 'update'])->name('manage_user.update');
     });
 });
 

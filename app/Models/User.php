@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,5 +51,14 @@ class User extends Authenticatable
     public function rentals(): HasMany
     {
         return $this->hasMany(Rental::class);
+    }
+
+    public function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: function (string $value) {
+                return date('M d, Y h:i A', strtotime($value));
+            }
+        );
     }
 }
