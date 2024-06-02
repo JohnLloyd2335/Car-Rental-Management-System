@@ -84,6 +84,13 @@
     <script src="{{ asset('admin/js/select2.min.js') }}"></script>
     <script src="{{ asset('admin/js/script.js') }}"></script>
     <script src="{{ asset('admin/js/ajax.js') }}"></script>
+
+    @if (Route::is('dashboard'))
+        <script src="{{ asset('admin/js/chart.js') }}"></script>
+        <script src="{{ asset('admin/js/graph-config.js') }}"></script>
+    @endif
+
+
     @livewireScripts
 </body>
 

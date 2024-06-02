@@ -27,7 +27,7 @@ class ManageUserController extends Controller
             'name' => $request->name,
             'mobile_number' => $request->mobile_number,
             'address' => $request->address,
-            'email' => $request->address
+            'email' => $request->email
         ]);
 
         return redirect()->route('manage_user.index')->with('success', 'User Updated Successfully');

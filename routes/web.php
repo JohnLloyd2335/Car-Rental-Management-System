@@ -84,6 +84,10 @@ Route::group(['middleware' => 'auth'], function () {
         //Dashboard Route
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        //Get Graph Data
+        Route::get('getRevenueGraphData', [DashboardController::class, 'getRevenueGraphData'])->name('getRevenueGraphData');
+        Route::get('getCarCategoryGraphData', [DashboardController::class, 'getCarCategoryGraphData'])->name('getCarCategoryGraphData');
+
         //Category Route
         Route::get('category', [CategoryController::class, 'index'])->name('category.index');
         Route::get('category/add', [CategoryController::class, 'create'])->name('category.create');

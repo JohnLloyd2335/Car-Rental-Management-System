@@ -46,6 +46,17 @@ class AuthController extends Controller
             return response()->json($response, 401);
         }
 
+        if (auth()->user()->is_blocked) {
+
+            $response = [
+                'success' => false,
+                'message' => 'User is Blocked please contact the administrator'
+            ];
+
+            return response()->json($response, 401);
+
+        }
+
         if (auth()->user()->is_admin) {
             return response()->json(['is_admin' => 1]);
         } else {

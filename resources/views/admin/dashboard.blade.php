@@ -75,8 +75,4 @@
             </div>
         </div>
     </div>
-
-
-    <script src="{{ asset('admin/js/chart.js') }}"></script>
-    <script src="{{ asset('admin/js/graph-config.js') }}"></script>
 @endsection
