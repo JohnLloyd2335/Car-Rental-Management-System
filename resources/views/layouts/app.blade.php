@@ -49,8 +49,9 @@
                     </div>
                     <hr />
                     <div class="dropdown-items">
-                        <div class="dropdown-item"><a href="">Profile</a></div>
-                        <div class="dropdown-item"><a href="">Account Settings</a></div>
+                        <div class="dropdown-item"><a href="{{ route('profile') }}">Profile</a></div>
+                        <div class="dropdown-item"><a href="{{ route('account_settings.index') }}">Account Settings</a>
+                        </div>
                         <div class="dropdown-item"><a id="logout">Logout</a></div>
                     </div>
                 </div>

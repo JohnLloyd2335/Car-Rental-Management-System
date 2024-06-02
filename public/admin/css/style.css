@@ -3320,6 +3320,243 @@ main .main-content .reports-container .report-list-container .report-item:hover 
 
 /*  Manage Users */
 
+
+
+/*  Profile Page and Account Settings */
+main .profile-page-section {
+    margin: 50px 30px;
+}
+
+main .profile-page-section .page-title-container h3 {
+    font-size: 50px;
+    text-align: left;
+    color: rgb(241, 81, 35);
+}
+
+main .profile-page-section .profile-container {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 50px;
+    margin-top: 50px;
+    padding: 30px 50px;
+    background-color: #f7f7f7;
+}
+
+
+main .profile-page-section .profile-container .profile-image-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+
+main .profile-page-section .profile-container .profile-image-container img {
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+}
+
+
+main .profile-page-section .profile-container .profile-image-container h3 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #6d6a6a;
+}
+
+main .profile-page-section .profile-container .profile-details-container {
+    flex: 5;
+    height: 100%;
+    padding: 30px 50px;
+}
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+}
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-column {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-column label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #6d6a6a;
+}
+
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-column .icon-input-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-column .icon-input-group i {
+    padding: 5px 15px;
+    font-size: 25px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #cfcece;
+    color: #2b2828;
+}
+
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-column .icon-input-group span {
+    padding: 5px 10px;
+    font-size: 18px;
+    font-weight: 900;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #cfcece;
+    color: #2b2828;
+}
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-column .icon-input-group input {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    border: 1px solid #e6e3e3;
+    padding-left: 8px;
+    font-size: 18px;
+    border-left: none;
+    outline: none;
+}
+
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-row:nth-child(4) .profile-detail-column {
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    gap: 8px;
+    padding: 10px 20px;
+}
+
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-row:nth-child(4) .profile-detail-column button {
+    padding: 10px 15px;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-row:nth-child(4) .profile-detail-column button:first-child {
+    background-color: #141414;
+}
+
+
+main .profile-page-section .profile-container .profile-details-container .profile-detail-row:nth-child(4) .profile-detail-column button:last-child {
+    background-color: #3751AB;
+}
+
+@media only screen and (max-width : 600px) {
+    main .profile-page-section .page-title-container h3 {
+        font-size: 30px;
+        text-align: center;
+        color: rgb(241, 81, 35);
+    }
+
+
+    main .profile-page-section .profile-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    main .profile-page-section .profile-container .profile-image-container img {
+        height: 200px;
+        width: 200px;
+    }
+
+    main .profile-page-section .profile-container .profile-image-container h3 {
+        font-size: 20px;
+    }
+
+
+    main .profile-page-section .profile-container .profile-details-container {
+        padding: 10px 15px;
+    }
+
+    main .profile-page-section .profile-container .profile-details-container .profile-detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+    }
+
+    main .profile-page-section .profile-container .profile-details-container .profile-detail-row:last-child .profile-detail-column {
+        justify-content: center;
+    }
+}
+
+
+@media only screen and (min-width : 667px) and (max-width : 992px) {
+    main .profile-page-section .page-title-container h3 {
+        font-size: 30px;
+        text-align: center;
+        color: rgb(241, 81, 35);
+    }
+
+
+    main .profile-page-section .profile-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    main .profile-page-section .profile-container .profile-image-container img {
+        height: 200px;
+        width: 200px;
+    }
+
+    main .profile-page-section .profile-container .profile-image-container h3 {
+        font-size: 20px;
+    }
+
+
+    main .profile-page-section .profile-container .profile-details-container {
+        padding: 10px 15px;
+    }
+
+    main .profile-page-section .profile-container .profile-details-container .profile-detail-row:last-child .profile-detail-column {
+        justify-content: center;
+    }
+}
+
+/*  Profile Page and Account Settings */
+
+
 /* Default Style for all pages */
 
 .page-title-container {

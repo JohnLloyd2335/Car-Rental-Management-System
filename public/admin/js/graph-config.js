@@ -17,14 +17,14 @@ function drawRevenueGraph(lastYearRevenueData, currentYearRevenueData) {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septmeber', 'October', 'November', 'December'],
             datasets: [
                 {
-                    label: (new Date().getFullYear() - 1) + "(Last Year)",
+                    label: (new Date().getFullYear() - 1) + " (Last Year)",
                     data: lastYearRevenueData,
                     borderWidth: 1,
                     backgroundColor: "#3751AB",
                     borderColor: "#D4D4D4"
                 },
                 {
-                    label: new Date().getFullYear() + "(Current Year)",
+                    label: new Date().getFullYear() + " (Current Year)",
                     data: currentYearRevenueData,
                     borderWidth: 1,
                     backgroundColor: "#F88D1D",

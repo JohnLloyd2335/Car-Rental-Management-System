@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\Admin\AccessoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CarAccessoryController;
@@ -13,11 +14,14 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UtilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RentalController as CustomerRentalController;
 use App\Models\Rental;
 use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController as CustomerCarController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\AccountSettingsController as AdminAccountSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +80,13 @@ Route::group(['middleware' => 'auth'], function () {
 
         //Store Review
         Route::post('rental/{id}/store-review', [CustomerRentalController::class, 'storeReview'])->name('customer.rental.storeReview');
+
+        //Profile
+        Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+
+        //Account Settings Controller
+        Route::get('account_settings', [AccountSettingsController::class, 'index'])->name('account_settings.index');
+        Route::put('account_settings/{id}/update', [AccountSettingsController::class, 'update'])->name('account_settings.update');
     });
 
     //Admin Route
@@ -167,14 +178,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('manage_user', [ManageUserController::class, 'index'])->name('manage_user.index');
         Route::get('manage_user/{user}/edit', [ManageUserController::class, 'edit'])->name('manage_user.edit');
         Route::put('manage_user/{user}/update', [ManageUserController::class, 'update'])->name('manage_user.update');
+
+        //Profile
+        Route::get('profile', [AdminProfileController::class, 'index'])->name('admin.profile.index');
+
+        //Account Settings Controller
+        Route::get('account_settings', [AdminAccountSettingsController::class, 'index'])->name('admin.account_settings.index');
+        Route::put('account_settings/{id}/update', [AdminAccountSettingsController::class, 'update'])->name('admin.account_settings.update');
     });
 });
 
 //Bug - CSS not working
 Route::get('pdf/{rental}/compute-partial', [PDFController::class, 'computePartial'])->name('pdf.compute-partial');
-
-// Route::get('sample', function () {
-//     $review = Rental::where('id', 2)->withAvg('review', 'stars')->get();
-
-//     return response()->json($review);
-// });

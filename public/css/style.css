@@ -3693,3 +3693,89 @@ main .add-review-container .review-container-row button {
 .active-star {
     color: #f7cd29 !important;
 }
+
+
+.session-message-container {
+    display: none;
+    width: 100%;
+}
+
+
+.session-message-container .session-message-success {
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    border-radius: 3px;
+}
+
+
+.session-message-container .session-message-success span {
+    font-size: 18px;
+    color: #ffff;
+    font-weight: 600;
+}
+
+.session-message-container .session-message-success button {
+    background-color: transparent;
+    padding: 3px 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.session-message-container .session-message-success button:hover {
+    opacity: 90%;
+}
+
+.session-message-container .session-message-success button i {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 900;
+}
+
+
+.session-message-container .session-message-error {
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    border-radius: 3px;
+}
+
+
+.session-message-container .session-message-error span {
+    font-size: 18px;
+    color: #ffff;
+    font-weight: 600;
+}
+
+.session-message-container .session-message-error button {
+    background-color: transparent;
+    padding: 3px 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.session-message-container .session-message-error button:hover {
+    opacity: 90%;
+}
+
+.session-message-container .session-message-error button i {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 900;
+}
+
+.show-session-message {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

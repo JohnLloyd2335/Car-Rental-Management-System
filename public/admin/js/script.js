@@ -2,6 +2,11 @@
 
 $(document).ready(function () {
 
+
+    $("#cancelProfileEditButton").hide();
+    $("#passwordRow").hide();
+    $("#updateProfileButton").hide();
+
     //Toggle Icon
     let toggleIcon = $("#toggleIcon");
     let sideBarContainer = $(".sidebar-container");
@@ -177,6 +182,55 @@ function clearRentalReportData() {
     }
 
     //remove data table data
+}
+
+function showAccountSettingsInput() {
+
+    let name = $("#name");
+    let email = $("#email");
+    let mobileNumber = $("#mobile_number");
+    let address = $("#address");
+    let password = $("#password");
+    let confirmPassword = $("#confirmPassword");
+    let cancelProfileEditButton = $("#cancelProfileEditButton");
+    let editProfileButton = $("#editProfileButton");
+    let updateProfileButton = $("#updateProfileButton");
+    let passwordRow = $("#passwordRow");
+
+    let inputKeys = ['name', 'email', 'mobile_number', 'address', 'password', 'confirmPassword'];
+
+    inputKeys.forEach((element) => {
+        $(`#${element}`).attr('disabled', false);
+    });
+
+    updateProfileButton.show();
+    cancelProfileEditButton.show();
+    editProfileButton.hide();
+
+
+
+    passwordRow.show();
+
+}
+
+function cancelEditProfile() {
+    let cancelProfileEditButton = $("#cancelProfileEditButton");
+    let editProfileButton = $("#editProfileButton");
+    let updateProfileButton = $("#updateProfileButton");
+    let passwordRow = $("#passwordRow");
+    let inputKeys = ['name', 'email', 'mobile_number', 'address', 'password', 'confirmPassword'];
+
+    inputKeys.forEach((element, index) => {
+        $(`#${element}`).attr('disabled', true);
+    });
+
+    cancelProfileEditButton.hide();
+    updateProfileButton.hide();
+    editProfileButton.show();
+
+
+    passwordRow.hide();
+    //set profile details to logged in user
 }
 
 

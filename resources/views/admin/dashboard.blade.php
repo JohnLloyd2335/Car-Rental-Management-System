@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="card bg-success">
+            <div class="card bg-primary">
                 <div class="card-icon-container">
                     <i class="fas fa-calendar"></i>
                 </div>
@@ -33,7 +33,17 @@
                 </div>
             </div>
 
-            <div class="card bg-primary">
+            <div class="card bg-success">
+                <div class="card-icon-container">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="card-info-container">
+                    <h3>{{ $completed_rentals_count }}</h3>
+                    <h4>COMPLETED RENTALS</h4>
+                </div>
+            </div>
+
+            <div class="card bg-danger">
                 <div class="card-icon-container">
                     <i class="fas fa-dollar"></i>
                 </div>

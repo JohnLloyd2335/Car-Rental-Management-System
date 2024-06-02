@@ -4,6 +4,7 @@ $(document).ready(function () {
 
   $("#cancelProfileEditButton").hide();
   $("#passwordRow").hide();
+  $("#updateProfileButton").hide();
 
   //profile dropdown
   $("#dropdown-open").click(function () {
@@ -132,6 +133,13 @@ $(document).ready(function () {
       $(this).val(value);
     }
   })
+
+  //Close session message
+  $(".session-message-container").on('click', '#closeSessionMessage', function () {
+    let sessionMessageContainer = $('.session-message-container');
+
+    sessionMessageContainer.toggleClass('show-session-message');
+  });
 });
 
 //set rent end date max val
@@ -188,7 +196,8 @@ function showAccountSettingsInput() {
   let password = $("#password");
   let confirmPassword = $("#confirmPassword");
   let cancelProfileEditButton = $("#cancelProfileEditButton");
-  let editUpdateProfileButton = $("#editUpdateProfileButton");
+  let editProfileButton = $("#editProfileButton");
+  let updateProfileButton = $("#updateProfileButton");
   let passwordRow = $("#passwordRow");
 
   let inputKeys = ['name', 'email', 'mobile_number', 'address', 'password', 'confirmPassword'];
@@ -197,15 +206,20 @@ function showAccountSettingsInput() {
     $(`#${element}`).attr('disabled', false);
   });
 
+  updateProfileButton.show();
   cancelProfileEditButton.show();
-  editUpdateProfileButton.text("Update");
+  editProfileButton.hide();
+
+
+
   passwordRow.show();
 
 }
 
 function cancelEditProfile() {
   let cancelProfileEditButton = $("#cancelProfileEditButton");
-  let editUpdateProfileButton = $("#editUpdateProfileButton");
+  let editProfileButton = $("#editProfileButton");
+  let updateProfileButton = $("#updateProfileButton");
   let passwordRow = $("#passwordRow");
   let inputKeys = ['name', 'email', 'mobile_number', 'address', 'password', 'confirmPassword'];
 
@@ -214,7 +228,10 @@ function cancelEditProfile() {
   });
 
   cancelProfileEditButton.hide();
-  editUpdateProfileButton.text("Edit");
+  updateProfileButton.hide();
+  editProfileButton.show();
+
+
   passwordRow.hide();
   //set profile details to logged in user
 }

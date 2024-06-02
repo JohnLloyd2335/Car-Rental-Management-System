@@ -69,8 +69,9 @@
                         <i class="fas fa-caret-down"></i>
                     </div>
                     <div class="user-dropdown-items" id="user-dropdown-items">
-                        <div class="user-dropdown-item"><a href="#">Change Password</a></div>
-                        <div class="user-dropdown-item"><a href="#">Account Settings</a></div>
+                        <div class="user-dropdown-item"><a href="{{ route('admin.profile.index') }}">Profile</a></div>
+                        <div class="user-dropdown-item"><a href="{{ route('admin.account_settings.index') }}">Account
+                                Settings</a></div>
                         <div class="user-dropdown-item"><a href="#" id="logout">Logout</a></div>
                     </div>
                 </div>
