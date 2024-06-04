@@ -40,7 +40,6 @@ class ManageUserController extends Controller
         DB::beginTransaction();
 
         try {
-            dd($id);
             $user = User::find($id);
 
             $new_status = !$user->is_blocked;
