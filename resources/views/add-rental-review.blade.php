@@ -154,7 +154,7 @@
             </div>
         </div>
 
-        @if ($rental->reviews->count() > 0)
+        @if ($rental?->review?->count() > 0)
             <div class="view-car-page-title-container">
                 <h4 class="align-self-center">Review</h4>
             </div>
@@ -162,41 +162,38 @@
 
             <div class="car-review-container">
                 <div class="reviews">
+                    <div class="review-item">
+                        <div class="review-user-image">
+                            <img src="https://placehold.co/100" alt="User Iamge">
+                        </div>
+                        <div class="review-content">
+                            <h4>{{ $rental->user->name }}</h4>
+                            <p id="review-date">{{ $rental->review->created_at }}</p>
+                            <p id="review-comment">
+                                {{ $rental->review->comment }}
+                            </p>
+                            <div class="review-stars">
+                                <div class="car-review-stars">
 
-                    @foreach ($rental->reviews as $review)
-                        <div class="review-item">
-                            <div class="review-user-image">
-                                <img src="https://placehold.co/100" alt="User Iamge">
-                            </div>
-                            <div class="review-content">
-                                <h4>{{ $review->rental->user->name }}</h4>
-                                <p id="review-date">{{ $review->created_at }}</p>
-                                <p id="review-comment">
-                                    {{ $review->comment }}
-                                </p>
-                                <div class="review-stars">
-                                    <div class="car-review-stars">
-
-                                        @php
-                                            $ratings = $review->stars;
-                                            $uncolored_stars = 5 - $ratings;
-                                        @endphp
-                                        @for ($i = 0; $i < $ratings; $i++)
-                                            <i class="fa-solid fa-star active-stars"></i>
-                                        @endfor
-                                        @for ($i = 0; $i < $uncolored_stars; $i++)
-                                            <i class="fa-solid fa-star uncolored-stars"></i>
-                                        @endfor
+                                    @php
+                                        $ratings = $rental->review->stars;
+                                        $uncolored_stars = 5 - $ratings;
+                                    @endphp
+                                    @for ($i = 0; $i < $ratings; $i++)
+                                        <i class="fa-solid fa-star active-stars"></i>
+                                    @endfor
+                                    @for ($i = 0; $i < $uncolored_stars; $i++)
+                                        <i class="fa-solid fa-star uncolored-stars"></i>
+                                    @endfor
 
 
-                                    </div>
-                                    <div class="car-review-rating">
-                                        <p>{{ $review->stars }}</p>
-                                    </div>
+                                </div>
+                                <div class="car-review-rating">
+                                    <p>{{ $rental->review->stars }}</p>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
 
                 </div>
 

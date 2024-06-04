@@ -195,7 +195,7 @@ class RentalController extends Controller
             return redirect()->back()->with("error", "Invalid Rental Status");
         }
 
-        $rental->load(['user', 'reviews']);
+        $rental->load(['user', 'review']);
         $rental->car->load(['category', 'brand', 'car_accessories']);
         $car_images = json_decode($rental->car->images);
         $car_accessories = $rental->car->car_accessories;
@@ -238,6 +238,7 @@ class RentalController extends Controller
 
             Review::create([
                 'rental_id' => $rental->id,
+                'car_id' => $rental->car_id,
                 'stars' => $request->stars,
                 'comment' => $request->comment
             ]);

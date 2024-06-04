@@ -1,6 +1,6 @@
 $("#logout").click(() => {
 
-    let url = "logout";
+    let url = "/logout";
     let token = $("meta[name='csrf-token']").attr('content');
 
     $.ajax({

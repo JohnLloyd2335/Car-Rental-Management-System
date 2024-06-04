@@ -12,7 +12,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['rental_id', 'stars', 'comment'];
+    protected $fillable = ['rental_id', 'car_id', 'stars', 'comment'];
 
     public function rental(): BelongsTo
     {
