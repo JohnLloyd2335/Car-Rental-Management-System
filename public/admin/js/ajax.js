@@ -188,5 +188,53 @@ function markAsCompleted(id, pentaltyAmount) {
 }
 
 
+function updateUserStatus(id) {
+
+    Swal.fire({
+        title: "Warning",
+        text: "Are you sure you want to update user status?",
+        icon: "warning",
+        confirmButtonText: "Yes",
+        showCancelButton: true
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            let token = $("meta[name='csrf-token']").attr('content');
+            let url = `manage_user/${id}/change-status`;
+
+
+            $.ajax({
+                url: url,
+                method: "POST",
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': token
+                },
+                success: function (response) {
+                    console.log(response)
+                    let message = response.message;
+
+                    Swal.fire({
+                        title: "Success",
+                        text: message,
+                        icon: "success",
+                    });
+
+                    window.location.reload();
+                },
+                error: function (error) {
+                    serverErrorAlert();
+                }
+
+            });
+
+
+        }
+
+    });
+
+}
+
 
 

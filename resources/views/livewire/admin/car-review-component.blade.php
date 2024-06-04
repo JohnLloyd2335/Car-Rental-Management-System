@@ -34,6 +34,7 @@
                     </div>
                 </div>
             @empty
+                <h2 style="width: 100%; text-align:center;">No Review Found</h2>
             @endforelse
 
 

@@ -1,6 +1,7 @@
 <div>
     <div class="user-table-container">
         <div class="table-button-header-container">
+
         </div>
         <div class="table-container">
             <table id="userTable" class="display" style="width:100%">
@@ -42,8 +43,8 @@
                                     <a href="{{ route('manage_user.edit', $user) }}" class="btn btn-success"><i
                                             class="fas fa-edit"></i></a>
 
-                                    <button class="btn {{ !$user->is_blocked ? 'btn-dark' : 'btn-primary' }}"
-                                        wire.click="changeStatus({{ $user }})"><i
+                                    <button onclick="updateUserStatus({{ $user->id }})"
+                                        class="btn {{ !$user->is_blocked ? 'btn-dark' : 'btn-primary' }}"><i
                                             class="fas {{ !$user->is_blocked ? 'fa-ban' : 'fa-check' }}"></i></button>
 
                                 </div>

@@ -23,9 +23,11 @@ class ManageUserTableComponent extends Component
 
     public function changeStatus(User $user)
     {
+        dd($user);
         $new_status = !$user->is_blocked;
 
         $user->update(['is_blocked' => $new_status]);
+
     }
 
 }

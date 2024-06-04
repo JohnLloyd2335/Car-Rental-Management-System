@@ -178,6 +178,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('manage_user', [ManageUserController::class, 'index'])->name('manage_user.index');
         Route::get('manage_user/{user}/edit', [ManageUserController::class, 'edit'])->name('manage_user.edit');
         Route::put('manage_user/{user}/update', [ManageUserController::class, 'update'])->name('manage_user.update');
+        Route::post('manage_user/{id}/change-status', [ManageUserController::class, 'changeStatus'])->name('manage_user.changeStatus');
+
 
         //Profile
         Route::get('profile', [AdminProfileController::class, 'index'])->name('admin.profile.index');

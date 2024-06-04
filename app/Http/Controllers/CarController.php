@@ -17,7 +17,7 @@ class CarController extends Controller
     public function show(Car $car)
     {
 
-        $car->load(['category', 'brand', 'car_accessories']);
+        $car->load(['category', 'brand', 'car_accessories', 'rentals']);
         $car_accessories = CarAccessory::with('accessory')->where('car_id', $car->id)->get();
         $car_images = json_decode($car->images, true);
         $has_rental = Rental::where('user_id', auth()->user()->id)->where('car_id', $car->id)->whereIn('status', ['Pending', 'Active', 'Overdue'])->get();
