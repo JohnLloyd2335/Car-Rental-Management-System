@@ -34,6 +34,11 @@ class Car extends Model
         return $this->hasMany(Rental::class);
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function createdAt(): Attribute
     {
         return Attribute::make(
@@ -42,4 +47,6 @@ class Car extends Model
             }
         );
     }
+
+
 }

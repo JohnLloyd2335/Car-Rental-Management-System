@@ -57,7 +57,7 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: function (string $value) {
-                return date('M d, Y h:i A', strtotime($value));
+                return date('M d, Y h:i:s A', strtotime($value));
             }
         );
     }

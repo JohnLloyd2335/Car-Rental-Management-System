@@ -22,6 +22,7 @@ class CarsComponent extends Component
     public string $keywords;
     public string $name;
 
+
     public function mount()
     {
         $this->categories = Category::pluck('name', 'id')->toArray();
@@ -55,7 +56,7 @@ class CarsComponent extends Component
             $cars = $cars->where('brand_id', $this->brandFilter);
         }
 
-        $cars = $cars->with(['category', 'brand']);
+        $cars = $cars->with(['category', 'brand', 'reviews'])->withAvg('reviews', 'stars');
 
         if ($this->priceFilter == "DESC") {
             $cars = $cars->orderBy('price_per_day', $this->priceFilter);
@@ -63,7 +64,7 @@ class CarsComponent extends Component
             $cars = $cars->orderBy('price_per_day', $this->priceFilter);
         }
 
-        $cars = $cars->paginate(1);
+        $cars = $cars->paginate(2);
 
         $this->resetPage();
 

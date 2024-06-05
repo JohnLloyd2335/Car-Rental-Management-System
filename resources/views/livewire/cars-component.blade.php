@@ -33,18 +33,6 @@
                         @endforelse
                     </select>
                 </div>
-                <div class="car-filter-item">
-                    <label>Rating</label>
-                    <select name="cars_rating" id="">
-                        <option value="All">All</option>
-                        <option value="5">5</option>
-                        <option value="4">4</option>
-                        <option value="3">3</option>
-                        <option value="2">2</option>
-                        <option value="1">1</option>
-                        <option value="No Rating">No Rating</option>
-                    </select>
-                </div>
                 <div class="car-filter-item" wire:click="changePriceOrderByText">
                     <p id="price-filter-text">{{ $labelText }}</p>
                     <i class="fa-solid {{ $labelIcon }}"></i>
@@ -72,16 +60,31 @@
                         </div>
                         <div class="car-details-row-2">
                             <p class="car-model"> {{ $car->model }}</p>
+                            @php
+                                $avg_stars =
+                                    number_format($car->reviews_avg_stars, 2) == 0.0
+                                        ? 0
+                                        : number_format($car->reviews_avg_stars, 2);
+                                $uncolored_stars = 5.0 - $avg_stars;
+                            @endphp
                             <div class="car-rating">
                                 <div class="car-stars">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half"></i>
+
+
+                                    @for ($i = 1; $i <= $avg_stars; $i++)
+                                        <i class="fa-solid fa-star" style="color: rgb(201, 187, 0);"></i>
+                                    @endfor
+
+                                    @for ($i = 1; $i <= $uncolored_stars; $i++)
+                                        <i class="fa-solid fa-star uncolored-stars"></i>
+                                    @endfor
+
+
+
                                 </div>
                                 <div class="car-rating-average">
-                                    <p>4.5</p>
+                                    <p>{{ $avg_stars }}
+                                    </p>
                                 </div>
                             </div>
                         </div>

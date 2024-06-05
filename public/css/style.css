@@ -1335,6 +1335,7 @@ main .cars-hero .search-bar-container button i {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    gap: 5px;
 
 }
 
@@ -1346,7 +1347,7 @@ main .cars-hero .search-bar-container button i {
 }
 
 .cars-container .car-item .car-body .car-details-row-2 .car-rating .car-stars i {
-    color: rgb(201, 187, 0);
+    /* color: rgb(201, 187, 0); */
     font-size: 18px;
 }
 
@@ -3693,6 +3694,7 @@ main .add-review-container .review-container-row button {
 .active-star {
     color: #f7cd29 !important;
 }
+
 
 
 .session-message-container {

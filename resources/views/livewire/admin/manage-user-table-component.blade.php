@@ -1,7 +1,29 @@
 <div>
     <div class="user-table-container">
         <div class="table-button-header-container">
+            <div class="table-filter-container">
+                <div>
+                    <label>Status</label>
+                    <select name="status" wire:model.change="status">
+                        <option value="All">All</option>
+                        <option value="0">Approved</option>
+                        <option value="1">Blocked</option>
+                    </select>
+                </div>
 
+                <div>
+                    <label>Date Registered</label>
+                    <select name="date_registered" wire:model.change="orderBy">
+                        <option value="DESC">Latest</option>
+                        <option value="ASC">Oldest</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Search</label>
+                    <input type="text" name="" wire:model.live.debounce.250ms="keywords">
+                </div>
+            </div>
         </div>
         <div class="table-container">
             <table id="userTable" class="display" style="width:100%">

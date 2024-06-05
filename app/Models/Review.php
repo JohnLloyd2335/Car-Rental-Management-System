@@ -19,6 +19,11 @@ class Review extends Model
         return $this->belongsTo(Rental::class);
     }
 
+    public function car(): BelongsTo
+    {
+        return $this->belongsTo(Car::class);
+    }
+
     public function createdAt(): Attribute
     {
         return Attribute::make(
