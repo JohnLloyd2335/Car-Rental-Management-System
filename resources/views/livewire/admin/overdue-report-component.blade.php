@@ -37,7 +37,7 @@
                         <tr>
                             <td>{{ $data['rental_count'] }}</td>
                             <td>{{ $data['total_days'] }}</td>
-                            <td>{{ $data['total_penalty'] }}</td>
+                            <td>₱{{ number_format($data['total_penalty'], 2) }}</td>
                         </tr>
                     </tbody>
 

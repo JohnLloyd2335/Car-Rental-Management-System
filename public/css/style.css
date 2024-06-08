@@ -3781,3 +3781,7 @@ main .add-review-container .review-container-row button {
     flex-direction: column;
     gap: 8px;
 }
+
+.text-red {
+    color: red;
+}

@@ -12,49 +12,41 @@ class CustomerFeedbackReportComponent extends Component
 
         $customer_feedback = [];
 
-        $cars = Car::with([
-            'rentals' => function ($query) {
-                $query->with('review');
-            },
-            'brand'
-        ])->get();
+        $cars = Car::with('brand', 'reviews', 'rentals')->get();
 
-        $car_avg_rating = 0;
-        $comment_count = 0;
-        $total_revenue = 0;
+        $customer_feedback['total_average_rating'] = 0;
+        $customer_feedback['total_comments'] = 0;
+        $customer_feedback['total_revenue'] = 0;
 
+        foreach ($cars as $key => $car) {
 
-        for ($i = 0; $i <= (count($cars) - 1); $i++) {
+            $customer_feedback['cars'][$key]['car_info'] = $car->brand->name . '-' . $car->model;
+            $customer_feedback['cars'][$key]['average_rating'] = 0;
+            $customer_feedback['cars'][$key]['comment_count'] = 0;
+            $customer_feedback['cars'][$key]['total_revenue'] = 0;
+            $rating_sum = 0;
 
-            $total_revenue = 0;
+            foreach ($cars[$key]->reviews as $review) {
+                $rating_sum += $review->stars;
+                $customer_feedback['cars'][$key]['average_rating'] = (float) ($rating_sum / $cars[$key]->reviews->count());
 
-            foreach ($cars[$i]->rentals as $rental) {
-                $car_avg_rating += ($rental?->review?->stars == null) ? 0 : $rental->review->stars;
-                $comment_count += ($rental?->review?->comment == null) ? 0 : 1;
-                $total_revenue += $rental->amount_paid;
+                if (!in_array($review->comment, [null, ''])) {
+                    $customer_feedback['cars'][$key]['comment_count'] += 1;
+                    $customer_feedback['total_comments'] += 1;
+                }
             }
 
-            $customer_feedback[$i] = [
-                'car_info' => $cars[$i]->brand->name . ' - ' . $cars[$i]->model,
-                'average_rating' => $car_avg_rating,
-                'comment_count' => $comment_count,
-                'total_revenue' => $total_revenue
-            ];
+            foreach ($cars[$key]->rentals as $rentals) {
+                $customer_feedback['cars'][$key]['total_revenue'] += $rentals->amount_paid;
+                $customer_feedback['total_revenue'] += $rentals->amount_paid;
+            }
+
+            $customer_feedback['total_average_rating'] += (float) $customer_feedback['cars'][$key]['average_rating'] / $cars->count();
         }
 
-        $cars_count = count($cars);
-        $total_avg_rating = 'NaN';
-        $total_comments = 0;
-        $total_revenue = 0;
+        $customer_feedback['cars_count'] = $cars->count();
+        $customer_feedback['cars'] = collect($customer_feedback['cars']);
 
-        foreach ($customer_feedback as $feedback) {
-            $total_comments += (int) $feedback['comment_count'];
-        }
-
-        foreach ($customer_feedback as $feedback) {
-            $total_revenue += (int) $feedback['total_revenue'];
-        }
-
-        return view('livewire.admin.customer-feedback-report-component', compact('customer_feedback', 'cars_count', 'total_avg_rating', 'total_comments', 'total_revenue'));
+        return view('livewire.admin.customer-feedback-report-component', compact('customer_feedback'));
     }
 }

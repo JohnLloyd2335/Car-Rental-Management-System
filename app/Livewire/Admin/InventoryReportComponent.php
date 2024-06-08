@@ -51,8 +51,16 @@ class InventoryReportComponent extends Component
             });
         }
 
+        $total_cars = $cars->count();
+        $cars = $cars->get();
 
-        $cars = $cars->paginate(1);
+        foreach ($cars as $car) {
+            if ($car->is_available) {
+                $available_cars += 1;
+            } else {
+                $unavailable_cars += 1;
+            }
+        }
 
         return view('livewire.admin.inventory-report-component', compact('cars', 'total_cars', 'available_cars', 'unavailable_cars'));
     }

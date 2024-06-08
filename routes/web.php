@@ -50,6 +50,9 @@ Route::post('/login/handleLogin', [AuthController::class, 'handleLogin'])->name(
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('handleRegistration');
 
+Route::get('verify-email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
+
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Authenticated Routes
@@ -191,4 +194,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 //Bug - CSS not working
-Route::get('pdf/{rental}/compute-partial', [PDFController::class, 'computePartial'])->name('pdf.compute-partial');
+Route::get('pdf/{id}/compute-partial', [PDFController::class, 'computePartial'])->name('pdf.compute-partial');

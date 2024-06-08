@@ -29,7 +29,7 @@
                     </thead>
                     <tbody>
 
-                        @forelse ($customer_feedback as $feedback)
+                        @forelse ($customer_feedback['cars'] as $feedback)
                             <tr>
                                 <td>{{ $feedback['car_info'] }}</td>
                                 <td>{{ number_format($feedback['average_rating'], 1) }}</td>
@@ -53,19 +53,20 @@
                 <div class="amount-container">
                     <div>
                         <label>Total Cars</label>
-                        <input type="text" value="{{ $cars_count }}" disabled>
+                        <input type="text" value="{{ $customer_feedback['cars_count'] }}" disabled>
                     </div>
                     <div>
                         <label>Total Avg Rating</label>
-                        <input type="text" value="{{ $total_avg_rating }}" disabled>
+                        <input type="text" value="{{ $customer_feedback['total_average_rating'] }}" disabled>
                     </div>
                     <div>
                         <label>Total Number of Comments</label>
-                        <input type="text" value="{{ $total_comments }}" disabled>
+                        <input type="text" value="{{ $customer_feedback['total_comments'] }}" disabled>
                     </div>
                     <div>
                         <label>Total Revenue</label>
-                        <input type="text" value="{{ '₱' . number_format($total_revenue, 2) }}" disabled>
+                        <input type="text" value="{{ '₱' . number_format($customer_feedback['total_revenue'], 2) }}"
+                            disabled>
                     </div>
                 </div>
 

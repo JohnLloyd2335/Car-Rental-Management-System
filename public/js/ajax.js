@@ -93,6 +93,73 @@ function handleLogin() {
     });
 }
 
+function handleRegistration() {
+    let form = document.getElementById("registerForm");
+    let formData = new FormData(form);
+    let token = $("meta[name='csrf-token']").attr('content');
+    let url = 'register';
+
+    $.ajax({
+        url: url,
+        method: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: false,
+        data: formData,
+        headers: {
+            'X-CSRF-TOKEN': token
+        },
+        success: function (response) {
+            let message = response.message;
+
+            Swal.fire({
+                title: 'Success',
+                text: message,
+                icon: 'success'
+            });
+
+            let fieldIds = ['name', 'email', 'address', 'mobile_number', 'password', 'password_confirmation'];
+
+            for (let i = 0; i <= fieldIds.length; i++) {
+                $(`#${fieldIds[i]}`).val("");
+                $(`#${fieldIds[i]}`).closest('.reg-form-group').find('p').empty();
+                $(`#${fieldIds[i]}`).closest('.icon-input-group').removeClass("input-error");
+            }
+        },
+        error: function (error) {
+
+            let statusCode = error.status;
+            let errors = error.responseJSON.errors ?? [];
+            let message = error.responseJSON.message ?? '';
+
+            let fieldIds = ['name', 'email', 'address', 'mobile_number', 'password', 'password_confirmation'];
+
+            for (let i = 0; i <= fieldIds.length; i++) {
+
+                $(`#${fieldIds[i]}`).closest('.reg-form-group').find('p').empty();
+                $(`#${fieldIds[i]}`).closest('.icon-input-group').removeClass("input-error");
+            }
+
+            if (statusCode == 422) {
+                $.each(errors, (key, value) => {
+                    $(`#${key}`).closest(".reg-form-group").find("p").text(value[0]);
+                    $(`#${key}`).closest('.icon-input-group').addClass("input-error");
+                });
+            }
+
+            if (statusCode == 500) {
+                Swal.fire({
+                    title: 'Oops',
+                    text: message,
+                    icon: 'error'
+                });
+            }
+
+        }
+    });
+
+}
+
 function cancelRental(id) {
     Swal.fire({
         title: 'Are you sure you want to cancel Rental?',

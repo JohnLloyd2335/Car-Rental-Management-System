@@ -53,9 +53,11 @@ class OverdueReportComponent extends Component
             $rentals = $rentals->whereBetween("created_at", [$this->start_date_value, $this->end_date_value]);
         }
 
+        $rentals = $rentals->get();
+
         foreach ($rentals as $rental) {
             $end_date = Carbon::parse($rental->end_date);
-            $date_returned = Carbon::parse($rental->date_retured);
+            $date_returned = Carbon::parse($rental->date_returned);
             $total_days += $end_date->diffInDays($date_returned);
         }
 

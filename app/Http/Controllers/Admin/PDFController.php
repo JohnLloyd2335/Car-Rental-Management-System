@@ -4,12 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rental;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
 
 class PDFController extends Controller
 {
+
+    private $fpdf;
+
+    public function __construct()
+    {
+        $this->fpdf = new Fpdf();
+    }
+
     public function computePartial($id)
     {
         $rental = Rental::findOrFail($id);
@@ -31,11 +39,15 @@ class PDFController extends Controller
         $total_amount = '₱' . number_format(($rental->car->price_per_day * $days) + ($over_due_days * $rental->car->price_per_day), 2);
 
 
-        $pdf = Pdf::loadView('pdf.compute-partial', compact('rental', 'start_date', 'end_date', 'days', 'amount', 'over_due_days', 'penalty_amount', 'total_amount'));
+        //$pdf = Pdf::loadView('pdf.compute-partial', compact('rental', 'start_date', 'end_date', 'days', 'amount', 'over_due_days', 'penalty_amount', 'total_amount'));
 
         $file_name = $rental->user->name . '_' . $rental->id . '-' . now()->format('Y-m-d h:i:s') . ".pdf";
 
-        return $pdf->download($file_name);
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Cell(40, 10, 'Hello World!');
+        $pdf->Output();
 
         //return view('pdf.compute-partial', compact('rental', 'start_date', 'end_date', 'days', 'amount', 'over_due_days', 'penalty_amount', 'total_amount'));
     }

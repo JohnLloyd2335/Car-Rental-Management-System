@@ -69,10 +69,10 @@
                     </tbody>
 
                 </table>
-
+                {{-- 
                 <div style="width: 100%">
                     {{ $cars->links() }}
-                </div>
+                </div> --}}
 
 
             </div>
