@@ -2717,7 +2717,6 @@ main .forgot-password-page-section {
     justify-content: center;
     background-color: #f7f7f7;
     border-radius: 8px;
-    box-shadow: 1px 1px 1px #2b2828;
     margin: 150px 400px;
 
 }
@@ -2878,7 +2877,6 @@ main .change-password-page-section .change-password-left-side {
     align-items: center;
     justify-content: center;
     gap: 30px;
-    border-right: 2px solid #e6e3e3;
     padding: 30px 50px;
     width: 600px;
 }
@@ -2925,11 +2923,10 @@ main .change-password-page-section .change-password-right-side .change-password-
 
 main .change-password-page-section .change-password-right-side>*:nth-child(3) {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
 }
 
-main .change-password-page-section .change-password-right-side>*:nth-child(3) button {
+#reset-button {
     font-size: 21px;
     font-weight: 500;
     padding: 3px 15px;

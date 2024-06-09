@@ -35,7 +35,7 @@
 
                         <a href="{{ route('register') }}" id="register-link">Don't have an account? Register</a>
 
-                        <a href="" id="forgot-password">Forgot Password?</a>
+                        <a href="{{ route('forgotPassword') }}" id="forgot-password">Forgot Password?</a>
 
                     </div>
 

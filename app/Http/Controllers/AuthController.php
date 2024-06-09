@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegistrationRequest;
+use App\Mail\Auth\PasswordReset;
 use App\Mail\Auth\RegistrationVerification;
 use App\Models\EmailVerificationTokens;
+use App\Models\PasswordResetToken;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
@@ -130,7 +132,7 @@ class AuthController extends Controller
                 'message' => 'We send an email please verify your account'
             ];
 
-            $token = \Str::random(90);
+            $token = Str::random(90);
 
             $mailData = [
                 'title' => 'Email Verification',
@@ -191,5 +193,150 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+    }
+
+    public function forgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    public function sendPasswordResetLink(Request $request)
+    {
+        $validator = Validator::make($request->only('email'), [
+            'email' => ['required', 'email', 'max:255', 'exists:users,email']
+        ], [
+            'exists' => 'User not Found'
+        ]);
+
+        if ($validator->fails()) {
+
+            $failed_validation_response = [
+                'success' => false,
+                'message' => 'Validation Error',
+                'errors' => $validator->errors()
+            ];
+
+            return response()->json($failed_validation_response, 422);
+        }
+
+        $token = Str::random(90);
+
+        $mailData = [
+            'title' => 'Password Reset Link',
+            'message' => 'Click the link to reset your password',
+            'link' => route('accessPasswordResetLink', $token)
+        ];
+
+        try {
+            DB::beginTransaction();
+            Mail::to($request->email)->send(new PasswordReset($mailData));
+
+            PasswordResetToken::create([
+                'email' => $request->email,
+                'token' => $token
+            ]);
+
+            $success_response = [
+                'success' => true,
+                'message' => 'The password reset link was sent to your email'
+            ];
+
+            DB::commit();
+
+            return response()->json($success_response);
+        } catch (\Throwable $th) {
+
+            DB::rollBack();
+
+            $failed_response = [
+                'success' => false,
+                'message' => $th->getMessage()
+            ];
+
+            return response()->json($failed_response, 500);
+        }
+
+    }
+
+    public function accessPasswordResetLink(string $token)
+    {
+
+        $user_token = PasswordResetToken::where('token', $token)->first();
+
+        if (!$user_token) {
+            abort(404, 'Invlalid Token');
+        }
+
+        if ($user_token->token != $token) {
+            abort(403, 'Token Mismatched');
+        }
+
+        $user = User::where('email', $user_token->email)->first();
+
+        return view('auth.change-password', compact('user', 'token'));
+    }
+
+    public function handleResetPassword(string $token, Request $request)
+    {
+        $user_token = PasswordResetToken::where('token', $token)->first();
+
+        if (!$user_token) {
+            abort(404, 'Invlalid Token');
+        }
+
+        if ($user_token->token != $token) {
+            abort(403, 'Token Mismatched');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'user_id' => ['required'],
+            'token' => ['required', 'max:90'],
+            'password' => ['required', 'max:255', 'confirmed'],
+            'password_confirmation' => ['required', 'max:255']
+        ]);
+
+        if ($validator->fails()) {
+
+            $validation_error_response = [
+                'success' => 'false',
+                'message' => 'Validation Error',
+                'errors' => $validator->errors()
+            ];
+
+            return response()->json($validation_error_response, 422);
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $user = User::findOrFail($request->user_id);
+
+            $user->update([
+                'password' => Hash::make($request->password)
+            ]);
+
+            $reset_token = PasswordResetToken::where('email', $user->email)->first();
+
+            $reset_token->delete();
+
+            DB::commit();
+
+            $success_response = [
+                'success' => true,
+                'message' => 'Reset Password Successfully, you can now login your account'
+            ];
+
+            return response()->json($success_response);
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            $failed_response = [
+                'success' => false,
+                'message' => $th->getMessage()
+            ];
+
+            return response()->json($failed_response, 500);
+        }
     }
 }

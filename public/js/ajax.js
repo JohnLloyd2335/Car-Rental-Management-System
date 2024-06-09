@@ -206,6 +206,113 @@ function cancelRental(id) {
     });
 }
 
+function handleForgotPassword() {
+
+    let url = 'forgot-password/send-email';
+    let token = $("meta[name='csrf-token']").attr('content');
+    let form = document.getElementById("forgotPasswordForm");
+    let formData = new FormData(form);
+
+    $.ajax({
+        url: url,
+        method: 'POST',
+        dataType: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        headers: {
+            'X-CSRF-TOKEN': token
+        },
+        success: function (response) {
+
+            Swal.fire({
+                title: 'Success',
+                text: response.message,
+                icon: 'success'
+            });
+
+        },
+        error: function (error) {
+            let statusCode = error.status;
+            let errors = error.responseJSON.errors ?? [];
+            let message = error.responseJSON.message ?? '';
+
+            if (statusCode == 422) {
+
+                $.each(errors, (key, value) => {
+                    $('#validation-error-container').text(value[0]);
+                });
+
+            } else {
+                Swal.fire({
+                    title: 'Ooops',
+                    text: message,
+                    icon: 'error'
+                });
+            }
+        }
+    })
+}
+
+function resetPassword() {
+
+    let token = $("#token").val();
+    let url = `/resetPassword/${token}`;
+    let csrf_token = $("meta[name='csrf-token']").attr('content');
+    let form = document.getElementById("passwordResetForm");
+    let formData = new FormData(form);
+
+
+    $.ajax({
+        url: url,
+        method: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: false,
+        headers: {
+            'X-CSRF-TOKEN': csrf_token
+        },
+        data: formData,
+        success: function (response) {
+
+            Swal.fire({
+                title: 'Success',
+                text: response.message,
+                icon: 'success'
+            });
+
+            $("#password").val("");
+            $("#password_confirmation").val("");
+            $(`#password`).closest('.change-password-form-group').find("p").empty();
+            $(`#password_confirmation`).closest('.change-password-form-group').find("p").empty();
+
+        },
+        error: function (error) {
+            let errors = error.responseJSON.errors ?? [];
+            let statusCode = error.status;
+            let message = error.responseJSON.message ?? '';
+
+            if (statusCode == 422) {
+
+                $.each(errors, (key, value) => {
+                    $(`#${key}`).closest('.change-password-form-group').find("p").empty();
+                    $(`#${key}`).closest('.change-password-form-group').find("p").text(value[0])
+                });
+
+            }
+            else if (statusCode == 500) {
+
+                Swal.fire({
+                    title: 'Oops',
+                    text: message,
+                    icon: 'error'
+                });
+
+            }
+        }
+    });
+}
+
 function addRentalReview(rental_id) {
 
     let rating = $("#review-count-field").val();

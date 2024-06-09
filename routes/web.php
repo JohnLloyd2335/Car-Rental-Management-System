@@ -49,8 +49,14 @@ Route::post('/login/handleLogin', [AuthController::class, 'handleLogin'])->name(
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('handleRegistration');
-
 Route::get('verify-email/{token}', [AuthController::class, 'verifyEmail'])->name('verify_email');
+
+Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
+Route::post('forgot-password/send-email', [AuthController::class, 'sendPasswordResetLink'])->name('sendPasswordResetLink');
+Route::get('forgot-password/access-reset-link/{token}', [AuthController::class, 'accessPasswordResetLink'])->name('accessPasswordResetLink');
+
+
+Route::post('resetPassword/{token}', [AuthController::class, 'handleResetPassword'])->name('handleResetPassword');
 
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
